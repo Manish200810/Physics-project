@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Measuring Glass Slab - Interactive Project</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f9fc;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    h1 { margin: 0; }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .tab-btn:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+    .tab-btn.active {
+      background: #2980b9;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .simulator {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f0f8ff;
+      margin-top: 15px;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      background: #fff;
+      margin-top: 10px;
+    }
+    input[type="number"], input[type="range"] {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #219a52;
+    }
+    .result {
+      font-weight: bold;
+      color: #27ae60;
+      margin-top: 10px;
+    }
+    .comparison {
+      margin-top: 30px;
+      background: #e8f5e9;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 5px solid #27ae60;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: #3498db;
+      color: white;
+    }
+    .highlight {
+      background: #fff3cd;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🔍 How We Measured the Glass Slab</h1>
+    <p>A hands-on physics project with interactive experiments</p>
+  </header>
+
+  <!-- Tabs Navigation -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab('shadow')">Shadow Method</button>
+    <button class="tab-btn" onclick="openTab('optical')">Optical Method</button>
+    <button class="tab-btn" onclick="openTab('parallax')">Parallax Method</button>
+    <button class="tab-btn" onclick="openTab('photo')">Photography Method</button>
+    <button class="tab-btn" onclick="openTab('ar')">Tape Measure App</button>
+  </div>
+
+  <!-- Tab Content -->
+  <div id="shadow" class="tab-content active">
+    <h2>☀️ Shadow Method</h2>
+    <p>Use light to cast a shadow and measure dimensions.</p>
+    <div class="simulator">
+      <label>Light Height (cm): <input type="range" id="lightHeight" min="10" max="100" value="50"></label>
+      <label>Distance from Slab (cm): <input type="range" id="distance" min="5" max="50" value="20"></label>
+      <canvas id="shadowCanvas" width="400" height="200"></canvas>
+      <div class="result">Shadow Width: <span id="shadowWidth">20.0 cm</span></div>
+    </div>
+  </div>
+
+  <div id="optical" class="tab-content">
+    <h2>🔍 Optical Method</h2>
+    <p>Measure lateral shift of a laser beam through glass.</p>
+    <div class="simulator">
+      <label>Angle of Incidence (°): <input type="number" id="angleOpt" value="30"></label>
+      <label>Refractive Index (n): <input type="number" id="nOpt" value="1.5"></label>
+      <label>Lateral Shift (cm): <input type="number" id="shiftOpt" value="0.6"></label>
+      <button onclick="calculateOptical()">Calculate Thickness</button>
+      <div class="result">Thickness: <span id="opticalResult">0.00 cm</span></div>
+    </div>
+  </div>
+
+  <div id="parallax" class="tab-content">
+    <h2>👀 Parallax Method</h2>
+    <p>Align pins using parallax to find thickness.</p>
+    <div class="simulator">
+      <canvas id="parallaxCanvas" width="500" height="300"></canvas>
+      <div id="parallaxFeedback">Move your eye until A & B align with C!</div>
+      <button onclick="checkAlignment()">Check Alignment</button>
+      <div class="result">Calculated Thickness: <span id="parallaxResult">0.00 cm</span></div>
+    </div>
+  </div>
+
+  <div id="photo" class="tab-content">
+    <h2>📸 Photography Method</h2>
+    <p>Take a photo with a ruler and use image analysis.</p>
+    <div class="simulator">
+      <input type="file" accept="image/*" id="photoInput" style="margin-bottom: 10px;">
+      <button onclick="analyzePhoto()">Analyze Image</button>
+      <div id="photoResult">Upload an image to analyze.</div>
+    </div>
+  </div>
+
+  <div id="ar" class="tab-content">
+    <h2>📱 Tape Measure App</h2>
+    <p>Simulate measuring with smartphone AR apps like Google Measure.</p>
+    <div class="simulator">
+      <button onclick="startARSimulation()">Launch AR Measurement</button>
+      <div id="arOutput">No measurement yet. Click to start.</div>
+    </div>
+  </div>
+
+  <!-- Comparison Section -->
+  <div class="comparison">
+    <h2>📊 Method Comparison</h2>
+    <table>
+      <tr>
+        <th>Method</th>
+        <th>Accuracy</th>
+        <th>Speed</th>
+        <th>Best For</th>
+      </tr>
+      <tr>
+        <td>Shadow Method</td>
+        <td>Low</td>
+        <td>Fast</td>
+        <td>Area estimation</td>
+      </tr>
+      <tr>
+        <td>Optical Method</td>
+        <td>High</td>
+        <td>Medium</td>
+        <td>Thickness via refraction</td>
+      </tr>
+      <tr>
+        <td>Parallax Method</td>
+        <td>Medium</td>
+        <td>Slow</td>
+        <td>Learning alignment</td>
+      </tr>
+      <tr>
+        <td>Photography Method</td>
+        <td>Medium-High</td>
+        <td>Medium</td>
+        <td>Digital analysis</td>
+      </tr>
+      <tr>
+        <td>Tape Measure App</td>
+        <td>Medium</td>
+        <td>Very Fast</td>
+        <td>Quick field measurements</td>
+      </tr>
+    </table>
+    <p><strong>💡 Winner:</strong> <span class="highlight">Optical Method</span> – most accurate for thickness.</p>
+  </div>
+
+  <script>
+    // Tab Switching
+    function openTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-btn');
+      
+      tabs.forEach(tab => tab.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Shadow Method Simulation
+    const ctxShadow = document.getElementById('shadowCanvas').getContext('2d');
+    function updateShadow() {
+      const height = document.getElementById('lightHeight').value;
+      const dist = document.getElementById('distance').value;
+      const width = 20; // Fixed slab width
+      
+      // Clear canvas
+      ctxShadow.clearRect(0, 0, 400, 200);
+      
+      // Draw light source
+      ctxShadow.fillStyle = '#f0ad4e';
+      ctxShadow.fillRect(10, 10, 10, 10);
+      ctxShadow.strokeStyle = '#f0ad4e';
+      ctxShadow.beginPath();
+      ctxShadow.moveTo(15, 15);
+      ctxShadow.lineTo(15, 10 + height);
+      ctxShadow.stroke();
+
+      // Draw slab
+      ctxShadow.fillStyle = '#d3d3d3';
+      ctxShadow.fillRect(200, 100, 100, 30);
+
+      // Draw shadow
+      const shadowWidth = width * (1 + (height / dist));
+      ctxShadow.fillStyle = '#333';
+      ctxShadow.fillRect(200, 150, shadowWidth, 10);
+      
+      document.getElementById('shadowWidth').textContent = shadowWidth.toFixed(1) + ' cm';
+    }
+
+    document.getElementById('lightHeight').addEventListener('input', updateShadow);
+    document.getElementById('distance').addEventListener('input', updateShadow);
+
+    // Optical Method Calculator
+    function calculateOptical() {
+      const angle = parseFloat(document.getElementById('angleOpt').value);
+      const n = parseFloat(document.getElementById('nOpt').value);
+      const shift = parseFloat(document.getElementById('shiftOpt').value);
+      
+      if (isNaN(angle) || isNaN(n) || isNaN(shift)) {
+        alert("Please enter valid numbers!");
+        return;
+      }
+
+      const rad = angle * Math.PI / 180;
+      const cosI = Math.cos(rad);
+      const sinI = Math.sin(rad);
+      const denominator = Math.sqrt(n*n - sinI*sinI);
+      const t = shift / (1 - cosI / denominator);
+      
+      document.getElementById('opticalResult').textContent = t.toFixed(2) + ' cm';
+    }
+
+    // Parallax Simulation
+    let pinA = { x: 100, y: 100 };
+    let pinB = { x: 150, y: 100 };
+    let targetC = { x: 250, y: 150 };
+
+    const ctxParallax = document.getElementById('parallaxCanvas').getContext('2d');
+    function drawParallax() {
+      ctxParallax.clearRect(0, 0, 500, 300);
+      
+      // Draw pins
+      ctxParallax.fillStyle = 'red';
+      ctxParallax.beginPath();
+      ctxParallax.arc(pinA.x, pinA.y, 5, 0, Math.PI*2);
+      ctxParallax.fill();
+      ctxParallax.beginPath();
+      ctxParallax.arc(pinB.x, pinB.y, 5, 0, Math.PI*2);
+      ctxParallax.fill();
+      
+      // Draw target
+      ctxParallax.fillStyle = 'green';
+      ctxParallax.beginPath();
+      ctxParallax.arc(targetC.x, targetC.y, 6, 0, Math.PI*2);
+      ctxParallax.fill();
+      
+      // Draw lines
+      ctxParallax.strokeStyle = 'blue';
+      ctxParallax.lineWidth = 1;
+      ctxParallax.beginPath();
+      ctxParallax.moveTo(pinA.x, pinA.y);
+      ctxParallax.lineTo(targetC.x, targetC.y);
+      ctxParallax.stroke();
+      
+      ctxParallax.beginPath();
+      ctxParallax.moveTo(pinB.x, pinB.y);
+      ctxParallax.lineTo(targetC.x, targetC.y);
+      ctxParallax.stroke();
+    }
+
+    drawParallax();
+
+    function checkAlignment() {
+      const dxA = targetC.x - pinA.x;
+      const dyA = targetC.y - pinA.y;
+      const dxB = targetC.x - pinB.x;
+      const dyB = targetC.y - pinB.y;
+      
+      const angleA = Math.atan2(dyA, dxA);
+      const angleB = Math.atan2(dyB, dxB);
+      
+      const diff = Math.abs(angleA - angleB);
+      
+      if (diff < 0.1) {
+        document.getElementById('parallaxFeedback').textContent = "✅ Aligned! Thickness ≈ 2.4 cm";
+        document.getElementById('parallaxResult').textContent = "2.4 cm";
+      } else {
+        document.getElementById('parallaxFeedback').textContent = "❌ Not aligned. Try moving the pins!";
+      }
+    }
+
+    // Photo Analysis Simulation
+    function analyzePhoto() {
+      const file = document.getElementById('photoInput').files[0];
+      if (!file) {
+        document.getElementById('photoResult').innerHTML = "⚠️ Please upload an image first.";
+        return;
+      }
+
+      setTimeout(() => {
+        document.getElementById('photoResult').innerHTML = 
+          "✅ Analyzed! Your slab appears to be <strong>2.8 cm</strong> thick.<br>" +
+          "Note: This is simulated. Real tools use AI/image scaling.";
+      }, 1000);
+    }
+
+    // AR Simulation
+    function startARSimulation() {
+      document.getElementById('arOutput').innerHTML = 
+        "📱 AR App Measures: <strong>2.7 cm</strong><br>" +
+        "⚠️ Simulated result. Real apps vary by device and lighting.";
+    }
+
+    // Initialize
+    window.onload = () => {
+      updateShadow();
+      drawParallax();
+    };
+  </script>
+
+</body>
+</html>
