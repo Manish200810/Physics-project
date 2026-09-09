@@ -1,954 +1,1038 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Measuring a Glass Slab — Our Physics Journey</title>
+<title>Measuring a Glass Slab | Physics Project</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
+/* ================================
+   BASIC
+================================ */
+
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-font-family:"DM Sans",sans-serif;
-background:#f6faff;
-color:#18253b;
-line-height:1.7;
+    font-family:"DM Sans",sans-serif;
+    background:#f7fbff;
+    color:#17263a;
+    line-height:1.7;
 }
 
 h1,h2,h3,h4{
-font-family:"Space Grotesk",sans-serif;
-line-height:1.15;
+    font-family:"Space Grotesk",sans-serif;
+    line-height:1.2;
 }
 
 a{
-text-decoration:none;
-color:inherit;
+    text-decoration:none;
+    color:inherit;
 }
 
-.wrap{
-max-width:1180px;
-margin:auto;
-padding:80px 24px;
+img{
+    max-width:100%;
 }
 
-.eyebrow{
-font-size:.78rem;
-letter-spacing:2px;
-text-transform:uppercase;
-font-weight:700;
-color:#1677c9;
-margin-bottom:15px;
+.container{
+    width:min(1180px,92%);
+    margin:auto;
 }
 
-/* NAV */
+section{
+    padding:90px 0;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
 
 nav{
-position:sticky;
-top:0;
-z-index:1000;
-background:rgba(255,255,255,.94);
-backdrop-filter:blur(15px);
-border-bottom:1px solid #dbe7f1;
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid #dce6ee;
 }
 
-.nav-inner{
-max-width:1180px;
-margin:auto;
-padding:15px 24px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+.navbar{
+    min-height:68px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
 .logo{
-font-family:"Space Grotesk";
-font-weight:700;
-color:#1677c9;
+    font-family:"Space Grotesk";
+    font-weight:700;
+    color:#167bc0;
+    white-space:nowrap;
 }
 
 .nav-links{
-display:flex;
-gap:18px;
-font-size:.88rem;
-font-weight:600;
+    display:flex;
+    gap:17px;
+    font-size:.82rem;
+    font-weight:700;
 }
 
 .nav-links a:hover{
-color:#1677c9;
+    color:#1686ca;
 }
 
-/* HERO */
+
+/* ================================
+   BUTTON
+================================ */
+
+.btn{
+    display:inline-block;
+
+    padding:13px 21px;
+
+    border-radius:12px;
+
+    background:#167dc4;
+    color:white;
+
+    font-weight:700;
+
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+
+/* ================================
+   HERO
+================================ */
 
 .hero{
-min-height:88vh;
-display:flex;
-align-items:center;
 
-background:
-radial-gradient(circle at 10% 20%,#d9f5ff 0,transparent 32%),
-radial-gradient(circle at 90% 20%,#e9e0ff 0,transparent 32%),
-linear-gradient(135deg,#f9fcff,#eef8ff);
+    min-height:88vh;
+
+    display:flex;
+    align-items:center;
+
+    background:
+        radial-gradient(circle at 8% 20%,#dff6ff,transparent 32%),
+        radial-gradient(circle at 90% 15%,#e9e2ff,transparent 32%),
+        linear-gradient(135deg,#fff,#eef8ff);
 }
 
 .hero-grid{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:60px;
-align-items:center;
+
+    display:grid;
+
+    grid-template-columns:1.15fr .85fr;
+
+    gap:60px;
+
+    align-items:center;
+}
+
+.eyebrow{
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    font-size:.76rem;
+
+    font-weight:700;
+
+    color:#197abd;
+
+    margin-bottom:12px;
 }
 
 .hero h1{
-font-size:clamp(3rem,7vw,6rem);
-margin-bottom:25px;
+
+    font-size:clamp(3rem,7vw,6rem);
+
+    letter-spacing:-3px;
+
+    margin-bottom:25px;
 }
 
 .hero h1 span{
-color:#1599d2;
+    color:#1189c9;
 }
 
-.hero p{
-font-size:1.15rem;
-color:#5d6c80;
-max-width:700px;
+.hero-text{
+
+    max-width:700px;
+
+    color:#637388;
+
+    font-size:1.1rem;
 }
 
-.buttons{
-display:flex;
-gap:14px;
-flex-wrap:wrap;
-margin-top:30px;
+.hero-buttons{
+    margin-top:30px;
 }
 
-.btn{
-display:inline-block;
-padding:13px 21px;
-border-radius:12px;
-background:#1677c9;
-color:white;
-font-weight:700;
-box-shadow:0 8px 20px rgba(22,119,201,.2);
-border:none;
-cursor:pointer;
-font-family:inherit;
+
+/* ================================
+   HERO GLASS SLAB
+================================ */
+
+.hero-illustration{
+
+    height:330px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    perspective:900px;
 }
 
-.btn.alt{
-background:white;
-color:#1677c9;
-border:1px solid #cddfea;
+.glass-slab{
+
+    width:300px;
+
+    height:190px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(68,210,242,.38),
+            rgba(112,126,244,.16)
+        );
+
+    border:4px solid #3bb5df;
+
+    transform:
+        rotateX(18deg)
+        rotateY(-25deg)
+        rotateZ(2deg);
+
+    box-shadow:
+        25px 30px 55px rgba(25,110,160,.2);
+
+    position:relative;
 }
 
-/* HERO SLAB */
+.glass-slab::after{
 
-.slab-art{
-height:330px;
-display:flex;
-align-items:center;
-justify-content:center;
-perspective:800px;
+    content:"GLASS SLAB";
+
+    position:absolute;
+
+    inset:0;
+
+    display:grid;
+
+    place-items:center;
+
+    font-family:"Space Grotesk";
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    color:#1676a8;
 }
 
-.slab{
-width:290px;
-height:180px;
-border:4px solid #42bce9;
-background:linear-gradient(
-135deg,
-rgba(80,210,250,.3),
-rgba(155,125,250,.18)
-);
-transform:
-rotateX(15deg)
-rotateY(-25deg)
-rotateZ(2deg);
-box-shadow:25px 35px 60px rgba(30,130,190,.2);
-position:relative;
+
+/* ================================
+   JOURNEY
+================================ */
+
+.journey{
+    background:white;
 }
 
-.slab:after{
-content:"GLASS SLAB";
-position:absolute;
-inset:0;
-display:grid;
-place-items:center;
-font-family:"Space Grotesk";
-font-weight:700;
-letter-spacing:2px;
-color:#1478af;
+.journey h2{
+
+    font-size:clamp(2.3rem,5vw,4rem);
+
+    max-width:850px;
 }
 
-/* STORY */
+.journey-intro{
 
-.story{
-background:white;
+    max-width:800px;
+
+    color:#66768a;
+
+    margin-top:15px;
 }
 
-.story-grid{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:14px;
-margin-top:40px;
+.journey-grid{
+
+    margin-top:40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:14px;
 }
 
-.story-card{
-padding:22px;
-background:#f8fcff;
-border:1px solid #dce8f2;
-border-radius:18px;
+.journey-card{
+
+    padding:22px;
+
+    border-radius:18px;
+
+    background:#f8fcff;
+
+    border:1px solid #dce8f0;
 }
 
-.story-card strong{
-color:#1677c9;
-font-size:.9rem;
+.journey-card .num{
+
+    color:#167bc0;
+
+    font-weight:700;
 }
 
-.story-card h3{
-margin:7px 0;
+.journey-card h3{
+    margin:7px 0;
 }
 
-.story-card p{
-font-size:.9rem;
-color:#66758a;
+.journey-card p{
+
+    color:#69798b;
+
+    font-size:.88rem;
 }
 
-/* SECTION */
 
-.section{
-border-top:1px solid #dbe7f1;
+/* ================================
+   METHODS
+================================ */
+
+.method{
+
+    border-top:1px solid #dce7ee;
+
+    background:#f9fcfe;
 }
 
-.section-head{
-display:flex;
-gap:20px;
-margin-bottom:40px;
-align-items:flex-start;
+.method:nth-of-type(even){
+    background:white;
 }
 
-.number{
-min-width:55px;
-height:55px;
-border-radius:16px;
-display:grid;
-place-items:center;
-background:#e1f5ff;
-color:#0872ae;
-font-weight:700;
-font-family:"Space Grotesk";
+.method-header{
+
+    display:flex;
+
+    gap:20px;
+
+    margin-bottom:35px;
 }
 
-.section-head h2{
-font-size:clamp(2.2rem,4vw,3.5rem);
+.method-number{
+
+    min-width:58px;
+
+    height:58px;
+
+    border-radius:16px;
+
+    display:grid;
+
+    place-items:center;
+
+    background:#e4f6ff;
+
+    color:#1476ae;
+
+    font-family:"Space Grotesk";
+
+    font-weight:700;
 }
 
-.section-head p{
-color:#64748b;
-margin-top:10px;
-max-width:780px;
+.method-header h2{
+
+    font-size:clamp(2.5rem,5vw,4rem);
 }
 
-/* CARDS */
+.method-header p{
 
-.cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-margin:30px 0;
+    max-width:800px;
+
+    color:#647489;
+
+    margin-top:10px;
 }
 
-.card{
-background:white;
-border:1px solid #dbe7f1;
-border-radius:18px;
-padding:25px;
-box-shadow:0 10px 30px rgba(30,70,100,.05);
-}
 
-.card h3{
-color:#176ea9;
-margin-bottom:12px;
-}
-
-.card p,
-.card li{
-color:#5f6d80;
-}
-
-.card ul,
-.card ol{
-padding-left:20px;
-}
-
-/* PRINCIPLE */
+/* ================================
+   PRINCIPLE
+================================ */
 
 .principle{
-background:#eef9ff;
-border-left:5px solid #37a9dc;
-border-radius:14px;
-padding:24px;
-margin:25px 0;
+
+    background:#effaff;
+
+    border-left:5px solid #36a9d8;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    margin-bottom:25px;
 }
 
 .principle h3{
-margin-bottom:8px;
+
+    color:#176c9e;
+
+    margin-bottom:8px;
 }
 
-/* DIMENSIONS */
 
-.dimension-box{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-margin:30px 0;
+/* ================================
+   INFORMATION CARDS
+================================ */
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    margin:25px 0;
 }
 
-.dimension{
-padding:22px;
-border-radius:17px;
-background:#fff7e8;
-border:1px solid #f0d597;
+.info-card{
+
+    background:white;
+
+    border:1px solid #dce7ee;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:
+        0 8px 28px rgba(30,70,100,.04);
 }
 
-.dimension:nth-child(2){
-background:#effcff;
-border-color:#a9ddec;
+.info-card h3{
+
+    color:#176ea8;
+
+    margin-bottom:12px;
 }
 
-.dimension:nth-child(3){
-background:#f4efff;
-border-color:#cfc0ed;
+.info-card ul,
+.info-card ol{
+
+    padding-left:20px;
 }
 
-.dimension h4{
-margin-bottom:8px;
+.info-card li,
+.info-card p{
+
+    color:#607085;
 }
 
-/* FORMULA */
+
+/* ================================
+   DIMENSIONS
+================================ */
+
+.dimension-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:16px;
+
+    margin:30px 0;
+}
+
+.dimension-card{
+
+    border-radius:18px;
+
+    padding:23px;
+
+    background:#fff8e9;
+
+    border:1px solid #efdba7;
+}
+
+.dimension-card:nth-child(2){
+
+    background:#effcff;
+
+    border-color:#b1ddea;
+}
+
+.dimension-card:nth-child(3){
+
+    background:#f4efff;
+
+    border-color:#d0c2ed;
+}
+
+.dimension-card h3{
+    margin-bottom:8px;
+}
+
+
+/* ================================
+   FORMULA
+================================ */
 
 .formula{
-background:#172d48;
-color:white;
-border-radius:18px;
-padding:25px;
-margin:25px 0;
-overflow:auto;
+
+    background:#182d47;
+
+    color:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin:25px 0;
+
+    overflow:auto;
+}
+
+.formula-title{
+
+    font-size:.78rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.5px;
+
+    color:#9ecfe8;
+
+    margin-bottom:10px;
 }
 
 .formula code{
-font-family:"Space Grotesk";
-font-size:1.05rem;
-color:#d9f5ff;
+
+    font-family:"Space Grotesk";
+
+    color:#e2f7ff;
+
+    font-size:1rem;
 }
 
-/* 3D APPARATUS */
 
-.apparatus-box{
-margin:40px 0;
-padding:30px;
-border-radius:24px;
-background:#f1f7fb;
-border:1px solid #d5e4ee;
-}
-
-.apparatus-box h3{
-margin-bottom:8px;
-}
-
-.apparatus-sub{
-color:#68788b;
-margin-bottom:25px;
-}
-
-.scene{
-height:330px;
-border-radius:20px;
-background:
-linear-gradient(#edf7fc 0 70%,#d7e2e9 70% 100%);
-position:relative;
-overflow:hidden;
-perspective:900px;
-border:1px solid #cfdee8;
-}
-
-/* table */
-
-.lab-table{
-position:absolute;
-bottom:45px;
-left:8%;
-width:84%;
-height:18px;
-background:#9aadb9;
-border-radius:8px;
-transform:rotateX(65deg);
-}
-
-/* glass slab */
-
-.model-slab{
-position:absolute;
-left:46%;
-bottom:63px;
-width:100px;
-height:130px;
-background:linear-gradient(
-135deg,
-rgba(69,203,243,.5),
-rgba(143,119,245,.2)
-);
-border:3px solid #39a9d8;
-box-shadow:15px 15px 25px rgba(30,100,130,.18);
-transform:
-perspective(500px)
-rotateY(-12deg);
-}
-
-.model-slab:after{
-content:"GLASS SLAB";
-position:absolute;
-inset:0;
-display:grid;
-place-items:center;
-font-size:.7rem;
-font-weight:700;
-color:#1477a7;
-writing-mode:vertical-rl;
-}
-
-/* light source */
-
-.light-source{
-position:absolute;
-left:10%;
-bottom:80px;
-width:65px;
-height:55px;
-background:#d8dde2;
-border-radius:10px;
-border:3px solid #8796a1;
-}
-
-.light-source:after{
-content:"";
-position:absolute;
-right:-25px;
-top:17px;
-width:28px;
-height:18px;
-background:#f3bb45;
-border-radius:5px;
-}
-
-/* screen */
-
-.screen{
-position:absolute;
-right:10%;
-bottom:70px;
-width:25px;
-height:150px;
-background:#e9eef2;
-border:3px solid #71818d;
-transform:perspective(300px) rotateY(-12deg);
-}
-
-/* rays */
-
-.light-ray{
-position:absolute;
-left:15%;
-bottom:125px;
-width:65%;
-height:4px;
-background:#f0a43d;
-transform-origin:left;
-transform:rotate(-2deg);
-}
-
-/* lens */
-
-.lens{
-position:absolute;
-left:27%;
-bottom:78px;
-width:45px;
-height:125px;
-border-radius:50%;
-background:rgba(111,210,244,.45);
-border:3px solid #3d9fc5;
-}
-
-/* phone */
-
-.phone-model{
-position:absolute;
-left:20%;
-bottom:67px;
-width:70px;
-height:125px;
-border-radius:14px;
-background:#202b3c;
-border:4px solid #53657b;
-transform:rotateY(-18deg);
-}
-
-.phone-screen{
-position:absolute;
-inset:8px;
-background:#d9f6ff;
-border-radius:8px;
-}
-
-/* reference block */
-
-.reference-block{
-position:absolute;
-right:24%;
-bottom:70px;
-width:105px;
-height:60px;
-background:linear-gradient(135deg,#b97839,#e1a45d);
-border:3px solid #875528;
-border-radius:8px;
-}
-
-/* camera */
-
-.camera{
-position:absolute;
-right:18%;
-bottom:95px;
-width:80px;
-height:55px;
-background:#263547;
-border-radius:10px;
-}
-
-.camera:after{
-content:"";
-position:absolute;
-width:28px;
-height:28px;
-border-radius:50%;
-background:#8fd9ee;
-border:5px solid #101a27;
-left:25px;
-top:12px;
-}
-
-/* observer */
-
-.observer{
-position:absolute;
-left:10%;
-bottom:75px;
-font-size:2rem;
-}
-
-/* DEMO */
-
-.demo{
-margin:35px 0;
-padding:28px;
-background:#f7fafc;
-border:1px solid #dce8f2;
-border-radius:22px;
-}
-
-.demo h3{
-margin-bottom:8px;
-}
-
-.demo-description{
-color:#68778a;
-margin-bottom:18px;
-}
-
-.animation{
-height:190px;
-border-radius:16px;
-background:white;
-border:1px solid #d8e4ed;
-position:relative;
-overflow:hidden;
-}
-
-/* shadow animation */
-
-.shadow-object{
-position:absolute;
-left:43%;
-top:45px;
-width:110px;
-height:65px;
-background:rgba(80,190,230,.18);
-border:3px solid #42b8df;
-}
-
-.shadow-ray{
-position:absolute;
-left:10%;
-top:35px;
-width:70%;
-height:3px;
-background:#f0a43d;
-transform-origin:left;
-transform:rotate(8deg);
-}
-
-.shadow-ground{
-position:absolute;
-bottom:35px;
-left:8%;
-width:84%;
-height:4px;
-background:#8c9aa5;
-}
-
-/* parallax animation */
-
-.parallax-slab{
-position:absolute;
-left:47%;
-top:55px;
-width:90px;
-height:70px;
-border:3px solid #46b7df;
-background:rgba(70,190,230,.15);
-}
-
-.eye{
-position:absolute;
-font-size:1.8rem;
-bottom:30px;
-}
-
-.eye.one{
-left:12%;
-}
-
-.eye.two{
-right:12%;
-}
-
-/* photography animation */
-
-.pixel-slab{
-position:absolute;
-left:30%;
-top:45px;
-width:260px;
-height:85px;
-border:3px solid #4bbce5;
-background:
-linear-gradient(
-90deg,
-transparent 24%,
-rgba(50,150,200,.15) 25%,
-transparent 26%,
-transparent 49%,
-rgba(50,150,200,.15) 50%,
-transparent 51%
-);
-}
-
-/* optical animation */
-
-.optical-glass{
-position:absolute;
-left:45%;
-top:25px;
-width:100px;
-height:140px;
-border:3px solid #43b6df;
-background:rgba(80,200,240,.15);
-}
-
-.optical-ray{
-position:absolute;
-height:4px;
-background:#ef9d3c;
-transform-origin:left;
-}
-
-.or1{
-left:8%;
-top:50px;
-width:210px;
-transform:rotate(18deg);
-}
-
-.or2{
-left:47%;
-top:91px;
-width:190px;
-transform:rotate(-5deg);
-}
-
-/* TABLES */
-
-table{
-width:100%;
-border-collapse:collapse;
-margin:25px 0;
-background:white;
-border:1px solid #d7e3ec;
-border-radius:15px;
-overflow:hidden;
-}
-
-th,td{
-padding:13px 14px;
-border-bottom:1px solid #e1eaf0;
-text-align:center;
-}
-
-th{
-background:#e9f5fc;
-color:#195d84;
-font-family:"Space Grotesk";
-}
-
-td{
-color:#596a7d;
-}
-
-/* PHOTOS */
+/* ================================
+   PHOTOS
+================================ */
 
 .photos{
-margin-top:35px;
+
+    margin-top:40px;
+}
+
+.photos h3{
+
+    margin-bottom:20px;
+
+    font-size:1.5rem;
 }
 
 .photo-grid{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:12px;
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:14px;
+}
+
+.photo-grid figure{
+    margin:0;
 }
 
 .photo-grid img{
-width:100%;
-aspect-ratio:1;
-object-fit:cover;
-border-radius:14px;
-border:1px solid #d5e2eb;
-background:#edf3f7;
+
+    width:100%;
+
+    aspect-ratio:1/1;
+
+    object-fit:cover;
+
+    display:block;
+
+    border-radius:15px;
+
+    border:1px solid #d5e2eb;
+
+    background:#edf3f7;
+
+    transition:.25s;
 }
 
-/* FAILURE */
+.photo-grid img:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 12px 25px rgba(20,80,110,.13);
+}
+
+.photo-grid figcaption{
+
+    font-size:.74rem;
+
+    color:#738195;
+
+    margin-top:7px;
+}
+
+
+/* ================================
+   FREE FALL
+================================ */
 
 .failure{
-background:#fff7ef;
+
+    background:#fff8f0;
+
+    border-top:1px solid #f0dfcc;
 }
 
 .failure-box{
-background:white;
-border:1px solid #efd8bd;
-border-radius:25px;
-padding:40px;
-max-width:850px;
-margin:auto;
+
+    max-width:950px;
+
+    margin:auto;
+
+    background:white;
+
+    border:1px solid #efd8bf;
+
+    border-radius:25px;
+
+    padding:40px;
 }
 
 .failure-box h2{
-font-size:clamp(2.3rem,5vw,3.8rem);
-color:#c46b20;
-margin-bottom:18px;
+
+    font-size:clamp(2.5rem,5vw,4.2rem);
+
+    color:#bd6a25;
+
+    margin-bottom:18px;
 }
 
-.failure-box li{
-color:#647486;
-margin:9px 0;
+.failure-list{
+
+    margin:22px 0;
+
+    padding-left:22px;
+
+    color:#657487;
 }
 
-/* OBSERVATIONS */
+.failure-list li{
+    margin:10px 0;
+}
+
+.failure-highlight{
+
+    background:#fff3e4;
+
+    border:1px solid #f0d0ac;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    margin:20px 0;
+
+    font-weight:700;
+
+    color:#a9581d;
+}
+
+
+/* ================================
+   OBSERVATION TABLES
+================================ */
 
 .observations{
-background:#ffffff;
+    background:white;
+}
+
+.observations h2{
+
+    font-size:clamp(2.5rem,5vw,4rem);
 }
 
 .sheet{
-background:#f9fcff;
-border:1px solid #d6e4ed;
-border-radius:22px;
-padding:25px;
-margin:35px 0;
-overflow:auto;
+
+    margin:35px 0;
+
+    padding:28px;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f7fbff
+        );
+
+    border:1px solid #d5e3ec;
+
+    box-shadow:
+        0 12px 35px rgba(30,70,100,.07);
+}
+
+.sheet-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:20px;
+}
+
+.sheet-number{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:12px;
+
+    display:grid;
+
+    place-items:center;
+
+    background:#dff4ff;
+
+    color:#1674ac;
+
+    font-weight:700;
 }
 
 .sheet h3{
-margin-bottom:15px;
-color:#176fa9;
+    color:#176ea8;
 }
 
-.result{
-padding:18px;
-border-radius:14px;
-background:#eaf7ff;
-border:1px solid #b8dceb;
-font-weight:700;
-margin-top:18px;
+.table-wrap{
+
+    overflow-x:auto;
+
+    border-radius:15px;
+
+    border:1px solid #cfdee7;
 }
 
-/* ERROR */
+table{
 
-.error-section{
-background:#eef8ff;
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:650px;
+
+    background:white;
+}
+
+th{
+
+    padding:15px 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dff3ff,
+            #edf8ff
+        );
+
+    color:#245b78;
+
+    font-family:"Space Grotesk";
+
+    font-size:.88rem;
+
+    border-bottom:2px solid #bfd6e2;
+}
+
+td{
+
+    padding:14px 12px;
+
+    text-align:center;
+
+    border-bottom:1px solid #e1e9ee;
+
+    color:#5d6d80;
+}
+
+tbody tr:last-child td{
+    border-bottom:none;
+}
+
+tbody tr:nth-child(even){
+    background:#f8fbfd;
+}
+
+tbody tr:hover{
+    background:#eef9ff;
+}
+
+.result-box{
+
+    margin-top:20px;
+
+    padding:18px 20px;
+
+    border-radius:15px;
+
+    background:#eaf7ff;
+
+    border:1px solid #b9dce9;
+
+    color:#175c7c;
+
+    font-weight:700;
+}
+
+.no-data{
+
+    padding:25px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    background:#fff8e9;
+
+    border:1px dashed #dfbd77;
+
+    color:#856d40;
+
+    font-weight:600;
+}
+
+
+/* ================================
+   ERROR ANALYSIS
+================================ */
+
+.error{
+
+    background:#eef8ff;
+
+    border-top:1px solid #d6eaf5;
 }
 
 .error-box{
-background:white;
-padding:30px;
-border-radius:20px;
-border:1px solid #d5e4ee;
-margin-top:25px;
+
+    background:white;
+
+    border:1px solid #d6e5ee;
+
+    border-radius:21px;
+
+    padding:30px;
+
+    margin-top:25px;
 }
 
 .error-formula{
-background:#172d48;
-color:white;
-padding:20px;
-border-radius:14px;
-margin:20px 0;
-font-family:"Space Grotesk";
+
+    margin:20px 0;
+
+    padding:20px;
+
+    border-radius:14px;
+
+    background:#172d47;
+
+    color:white;
+
+    font-family:"Space Grotesk";
+
+    overflow:auto;
 }
 
-/* TAPE APP */
+.warning{
 
-.tape{
-background:#f6f0ff;
+    background:#fff8e8;
+
+    border:1px solid #ecd7a8;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    margin-top:22px;
+
+    color:#665a43;
 }
 
-.phone-large{
-font-size:5rem;
-text-align:center;
-margin-bottom:20px;
+
+/* ================================
+   FINAL
+================================ */
+
+.modern{
+
+    background:#f5f0ff;
+
+    text-align:center;
 }
 
-.tape h2{
-text-align:center;
-font-size:clamp(2.3rem,5vw,4rem);
+.phone{
+
+    font-size:5rem;
+
+    margin-bottom:15px;
 }
 
-.tape-intro{
-max-width:800px;
-margin:20px auto;
-text-align:center;
-color:#617085;
+.modern h2{
+
+    font-size:clamp(2.5rem,5vw,4.3rem);
 }
 
-.tech-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-margin-top:35px;
+.modern p{
+
+    max-width:750px;
+
+    margin:20px auto;
+
+    color:#667388;
 }
 
-.tech-card{
-background:white;
-border:1px solid #ddd4ee;
-padding:25px;
-border-radius:18px;
+.final-joke{
+
+    max-width:700px;
+
+    margin:35px auto;
+
+    padding:30px;
+
+    border-radius:22px;
+
+    background:white;
+
+    border:1px solid #ddd3ef;
+
+    box-shadow:
+        0 12px 30px rgba(80,50,120,.06);
 }
 
-.tech-card h3{
-color:#6e55a5;
-margin-bottom:10px;
+.final-joke .quote{
+
+    font-family:"Space Grotesk";
+
+    font-size:1.4rem;
+
+    font-weight:700;
+
+    color:#634f96;
 }
 
-/* END */
 
-.ending{
-background:#172d48;
-color:white;
-text-align:center;
-}
-
-.ending .wrap{
-max-width:850px;
-}
-
-.ending h2{
-font-size:clamp(2.5rem,5vw,4rem);
-margin-bottom:20px;
-}
-
-.ending p{
-color:#cbd8e5;
-margin:16px 0;
-}
-
-.joke{
-font-size:1.35rem;
-color:white!important;
-}
-
-/* FOOTER */
+/* ================================
+   FOOTER
+================================ */
 
 footer{
-background:#101f31;
-color:#9eafc0;
-text-align:center;
-padding:30px;
+
+    background:#12243a;
+
+    color:#a8b8c7;
+
+    text-align:center;
+
+    padding:30px 15px;
 }
 
-/* MOBILE */
 
-@media(max-width:900px){
+/* ================================
+   RESPONSIVE
+================================ */
 
-.hero-grid{
-grid-template-columns:1fr;
+@media(max-width:950px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .journey-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .dimension-grid{
+        grid-template-columns:1fr;
+    }
+
+    .photo-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .nav-links{
+        display:none;
+    }
 }
 
-.story-grid{
-grid-template-columns:1fr 1fr;
-}
-
-.cards{
-grid-template-columns:1fr;
-}
-
-.dimension-box{
-grid-template-columns:1fr;
-}
-
-.photo-grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.tech-grid{
-grid-template-columns:1fr;
-}
-
-.nav-links{
-display:none;
-}
-
-}
 
 @media(max-width:550px){
 
-.wrap{
-padding:60px 18px;
-}
+    section{
+        padding:65px 0;
+    }
 
-.story-grid{
-grid-template-columns:1fr;
-}
+    .hero h1{
+        letter-spacing:-1.5px;
+    }
 
-.section-head{
-flex-direction:column;
-}
+    .journey-grid{
+        grid-template-columns:1fr;
+    }
+
+    .photo-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .failure-box{
+        padding:25px;
+    }
 
 }
 
@@ -959,11 +1043,13 @@ flex-direction:column;
 <body>
 
 
-<!-- NAVIGATION -->
+<!-- =========================================
+     NAVIGATION
+========================================= -->
 
 <nav>
 
-<div class="nav-inner">
+<div class="container navbar">
 
 <div class="logo">
 GLASS SLAB • PHYSICS
@@ -976,9 +1062,9 @@ GLASS SLAB • PHYSICS
 <a href="#optical">Optical</a>
 <a href="#photography">Photography</a>
 <a href="#parallax">Parallax</a>
-<a href="#failure">Failure</a>
+<a href="#failure">Free Fall</a>
 <a href="#observations">Results</a>
-<a href="#tape">Modern Solution</a>
+<a href="#modern">Final</a>
 
 </div>
 
@@ -987,13 +1073,13 @@ GLASS SLAB • PHYSICS
 </nav>
 
 
-<!-- HERO -->
+<!-- =========================================
+     HERO
+========================================= -->
 
 <header class="hero">
 
-<div class="wrap">
-
-<div class="hero-grid">
+<div class="container hero-grid">
 
 <div>
 
@@ -1004,27 +1090,23 @@ Our Physics Journey
 <h1>
 Measuring a
 <span>Glass Slab</span>
-without simply measuring it.
+indirectly.
 </h1>
 
-<p>
+<p class="hero-text">
 
-One glass slab. Three dimensions. Four indirect methods.
+How can we determine the length, breadth and thickness of a
+rectangular glass slab without simply measuring it directly?
 
-We explored light, refraction, pixels and parallax before discovering
-that sometimes the hardest part of a physics experiment isn't the
-equation—it's getting the setup right.
+Instead of relying on just one technique, we explored several
+ideas from physics — projection, optics, photography and parallax.
 
 </p>
 
-<div class="buttons">
+<div class="hero-buttons">
 
-<a class="btn" href="#journey">
-Begin the journey ↓
-</a>
-
-<a class="btn alt" href="#shadow">
-Start with Method 1
+<a href="#journey" class="btn">
+Start the Journey ↓
 </a>
 
 </div>
@@ -1032,11 +1114,9 @@ Start with Method 1
 </div>
 
 
-<div class="slab-art">
+<div class="hero-illustration">
 
-<div class="slab"></div>
-
-</div>
+<div class="glass-slab"></div>
 
 </div>
 
@@ -1045,69 +1125,95 @@ Start with Method 1
 </header>
 
 
-<!-- JOURNEY -->
+<!-- =========================================
+     JOURNEY
+========================================= -->
 
-<section id="journey" class="story">
+<section id="journey" class="journey">
 
-<div class="wrap">
+<div class="container">
 
 <div class="eyebrow">
 The Question
 </div>
 
 <h2>
-How could we determine the dimensions indirectly?
+One glass slab. Three dimensions. Four methods.
 </h2>
 
-<p style="max-width:780px;color:#64748b;margin-top:15px">
+<p class="journey-intro">
 
-Our target was a rectangular glass slab. We wanted to determine its
-length, breadth and thickness while exploring different physical
-principles rather than depending on a conventional direct measurement.
+Our objective was to determine the three dimensions of a
+rectangular glass slab using indirect methods. Each method
+approached the same problem from a different physics concept.
 
 </p>
 
 
-<div class="story-grid">
+<div class="journey-grid">
 
-<div class="story-card">
-<strong>01</strong>
+<div class="journey-card">
+
+<div class="num">01</div>
+
 <h3>Shadow</h3>
+
 <p>
-Use light propagation and geometrical projection.
+Using light and geometrical projection.
 </p>
+
 </div>
 
-<div class="story-card">
-<strong>02</strong>
+
+<div class="journey-card">
+
+<div class="num">02</div>
+
 <h3>Optical</h3>
+
 <p>
-Use image formation and optical geometry.
+Using image formation and refraction.
 </p>
+
 </div>
 
-<div class="story-card">
-<strong>03</strong>
+
+<div class="journey-card">
+
+<div class="num">03</div>
+
 <h3>Photography</h3>
+
 <p>
-Use pixels as a calibrated measurement scale.
+Turning pixels into physical dimensions.
 </p>
+
 </div>
 
-<div class="story-card">
-<strong>04</strong>
+
+<div class="journey-card">
+
+<div class="num">04</div>
+
 <h3>Parallax</h3>
+
 <p>
-Use apparent displacement produced by viewpoint change.
+Using apparent displacement.
 </p>
+
 </div>
 
-<div class="story-card">
-<strong>05</strong>
+
+<div class="journey-card">
+
+<div class="num">05</div>
+
 <h3>Free Fall</h3>
+
 <p>
-An attempt that didn't survive the experimental reality.
+The attempt that didn't quite work.
 </p>
+
 </div>
 
 </div>
@@ -1117,29 +1223,33 @@ An attempt that didn't survive the experimental reality.
 </section>
 
 
-<!-- ===================================================== -->
-<!-- METHOD 1 : SHADOW -->
-<!-- ===================================================== -->
+<!-- =========================================
+     01 SHADOW
+========================================= -->
 
-<section id="shadow" class="section">
+<section id="shadow" class="method">
 
-<div class="wrap">
+<div class="container">
 
-<div class="section-head">
+<div class="method-header">
 
-<div class="number">
+<div class="method-number">
 01
 </div>
 
 <div>
+
+<div class="eyebrow">
+First Approach
+</div>
 
 <h2>
 Shadow Method
 </h2>
 
 <p>
-Our first idea was simple: if the slab can create a measurable
-projection, perhaps its shadow can reveal its dimensions.
+Our first idea was simple: if light travels in straight lines,
+could the shadow of the glass slab reveal its dimensions?
 </p>
 
 </div>
@@ -1155,20 +1265,21 @@ Physics Principle
 
 <p>
 
-Light propagates approximately in straight lines through a uniform
-medium. When a glass slab is placed in the path of light, its outline
-can produce a projection. By comparing this projected dimension with
-a known reference and using geometrical similarity, the unknown
-dimension can be estimated.
+In a uniform medium, light travels approximately in straight
+lines. When light falls on an object, a shadow or projection
+is formed. By comparing this projection with a known reference
+and applying geometrical similarity, the dimensions of the
+glass slab can be estimated.
 
 </p>
 
 </div>
 
 
-<div class="cards">
+<div class="info-grid">
 
-<div class="card">
+
+<div class="info-card">
 
 <h3>
 Apparatus
@@ -1176,11 +1287,16 @@ Apparatus
 
 <ul>
 
-<li>Rectangular glass slab</li>
+<li>Glass slab</li>
+
 <li>Light source</li>
+
 <li>Screen</li>
+
 <li>Reference object</li>
+
 <li>Metre scale</li>
+
 <li>Stand/support</li>
 
 </ul>
@@ -1188,7 +1304,7 @@ Apparatus
 </div>
 
 
-<div class="card">
+<div class="info-card">
 
 <h3>
 Procedure
@@ -1197,11 +1313,17 @@ Procedure
 <ol>
 
 <li>Place the glass slab in a fixed position.</li>
-<li>Illuminate the slab with a suitable light source.</li>
-<li>Obtain a clear projection.</li>
-<li>Introduce a reference dimension.</li>
-<li>Measure the relevant projected distances.</li>
-<li>Use the geometrical relationship to determine the dimension.</li>
+
+<li>Illuminate it using the light source.</li>
+
+<li>Obtain a clear projection on the screen.</li>
+
+<li>Use a known reference for calibration.</li>
+
+<li>Measure the projected dimensions.</li>
+
+<li>Apply the geometrical relationship.</li>
+
 <li>Repeat for the required orientations.</li>
 
 </ol>
@@ -1209,15 +1331,17 @@ Procedure
 </div>
 
 
-<div class="card">
+<div class="info-card">
 
 <h3>
-What are we measuring?</h3>
+Why does it work?
+</h3>
 
 <p>
 
-The important idea is not the shadow itself, but the relationship
-between the actual object, the reference and their projected sizes.
+The shadow is a geometrical projection. Its dimensions depend
+on the dimensions of the slab and the geometry of the
+light-source and screen arrangement.
 
 </p>
 
@@ -1226,44 +1350,52 @@ between the actual object, the reference and their projected sizes.
 </div>
 
 
-<div class="dimension-box">
+<div class="dimension-grid">
 
-<div class="dimension">
 
-<h4>
-Length
-</h4>
+<div class="dimension-card">
+
+<h3>
+Length — L
+</h3>
 
 <p>
-The longitudinal extent of the projected slab can be compared with
-a known reference length.
+
+The long projected edge can be compared with a known reference
+to determine the length of the glass slab.
+
 </p>
 
 </div>
 
 
-<div class="dimension">
+<div class="dimension-card">
 
-<h4>
-Breadth
-</h4>
+<h3>
+Breadth — B
+</h3>
 
 <p>
-The transverse extent of the projection can similarly be calibrated.
+
+The transverse projected dimension can similarly be calibrated
+using the reference object.
+
 </p>
 
 </div>
 
 
-<div class="dimension">
+<div class="dimension-card">
 
-<h4>
-Thickness
-</h4>
+<h3>
+Thickness — t
+</h3>
 
 <p>
-A suitable orientation allows the thickness to contribute a measurable
-projected dimension.
+
+By changing the orientation of the glass slab, its smaller
+thickness dimension can also be obtained from the projection.
+
 </p>
 
 </div>
@@ -1272,6 +1404,10 @@ projected dimension.
 
 
 <div class="formula">
+
+<div class="formula-title">
+General relationship
+</div>
 
 <code>
 
@@ -1283,59 +1419,81 @@ Unknown dimension ≈ Known reference dimension ×
 </div>
 
 
-<!-- 3D APPARATUS -->
+<!-- SHADOW PHOTOS -->
 
-<div class="apparatus-box">
-
-<h3>
-Interactive 3D-Style Apparatus
-</h3>
-
-<p class="apparatus-sub">
-A simplified interactive model of the shadow-method setup.
-</p>
-
-<div class="scene">
-
-<div class="lab-table"></div>
-
-<div class="light-source"></div>
-
-<div class="model-slab"></div>
-
-<div class="screen"></div>
-
-<div class="light-ray"></div>
-
-</div>
-
-</div>
-
-
-<!-- DEMO -->
-
-<div class="demo">
+<div class="photos">
 
 <h3>
-▶ Sample Animated Demonstration
+Our Shadow Experiment 📸
 </h3>
 
-<p class="demo-description">
-Conceptual demonstration only — not actual experimental data.
-</p>
+<div class="photo-grid">
 
-<button class="btn"
-onclick="runAnimation(this,'shadowDemo')">
-Run Sample Demonstration
-</button>
 
-<div id="shadowDemo" class="animation" style="margin-top:20px;">
+<figure>
 
-<div class="shadow-object"></div>
+<img
+src="images/For%20shadow%20method%201.jpeg"
+alt="Shadow method photo 1">
 
-<div class="shadow-ray"></div>
+<figcaption>
+Shadow Method — Photo 1
+</figcaption>
 
-<div class="shadow-ground"></div>
+</figure>
+
+
+<figure>
+
+<img
+src="images/For%20shadow%20method%202.jpeg"
+alt="Shadow method photo 2">
+
+<figcaption>
+Shadow Method — Photo 2
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/For%20shadow%20method%203.jpeg"
+alt="Shadow method photo 3">
+
+<figcaption>
+Shadow Method — Photo 3
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/For%20shadow%20method%204%20.jpg"
+alt="Shadow method photo 4">
+
+<figcaption>
+Shadow Method — Photo 4
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/For%20shadow%20method%205.jpeg"
+alt="Shadow method photo 5">
+
+<figcaption>
+Shadow Method — Photo 5
+</figcaption>
+
+</figure>
+
 
 </div>
 
@@ -1346,29 +1504,36 @@ Run Sample Demonstration
 </section>
 
 
-<!-- ===================================================== -->
-<!-- METHOD 2 : OPTICAL -->
-<!-- ===================================================== -->
+<!-- =========================================
+     02 OPTICAL
+========================================= -->
 
-<section id="optical" class="section">
+<section id="optical" class="method">
 
-<div class="wrap">
+<div class="container">
 
-<div class="section-head">
+<div class="method-header">
 
-<div class="number">
+<div class="method-number">
 02
 </div>
 
 <div>
+
+<div class="eyebrow">
+Second Approach
+</div>
 
 <h2>
 Optical Method
 </h2>
 
 <p>
-Next, we moved from ordinary projection to image formation and
-geometrical optics.
+
+After shadows, we moved into geometrical optics and explored
+how refraction and image formation could provide information
+about the glass slab.
+
 </p>
 
 </div>
@@ -1384,19 +1549,20 @@ Physics Principle
 
 <p>
 
-A convex lens forms an image of an object. By arranging the lens,
-glass slab and screen appropriately, the effect of inserting the slab
-can be studied through changes in image position or optical geometry.
-The relevant distances can then be related to the slab dimension.
+When light passes from one medium to another, its speed changes
+and its direction may change. This phenomenon is called
+refraction. A plane-parallel glass slab produces a measurable
+optical displacement that can be related to its thickness.
 
 </p>
 
 </div>
 
 
-<div class="cards">
+<div class="info-grid">
 
-<div class="card">
+
+<div class="info-card">
 
 <h3>
 Apparatus
@@ -1405,18 +1571,23 @@ Apparatus
 <ul>
 
 <li>Convex lens</li>
+
 <li>Glass slab</li>
+
 <li>Screen</li>
+
 <li>Scale</li>
+
 <li>Object</li>
-<li>Optical bench/support</li>
+
+<li>Optical support</li>
 
 </ul>
 
 </div>
 
 
-<div class="card">
+<div class="info-card">
 
 <h3>
 Procedure
@@ -1425,27 +1596,35 @@ Procedure
 <ol>
 
 <li>Set up the convex lens and screen.</li>
+
 <li>Obtain a sharp image.</li>
-<li>Record the relevant optical positions.</li>
+
+<li>Record the relevant positions.</li>
+
 <li>Introduce the glass slab.</li>
-<li>Observe the change in the optical arrangement.</li>
+
+<li>Observe the optical displacement.</li>
+
 <li>Measure the required distances.</li>
-<li>Use the chosen optical relation to obtain the thickness.</li>
+
+<li>Apply the optical relationship.</li>
 
 </ol>
 
 </div>
 
 
-<div class="card">
+<div class="info-card">
 
 <h3>
-Why optics?</h3>
+Key Idea
+</h3>
 
 <p>
 
-The slab interacts with light through refraction, allowing its physical
-thickness to be investigated through an optical displacement.
+Instead of physically measuring every edge, we use the behaviour
+of light and the resulting image displacement to obtain
+information about the slab.
 
 </p>
 
@@ -1454,45 +1633,52 @@ thickness to be investigated through an optical displacement.
 </div>
 
 
-<div class="dimension-box">
+<div class="dimension-grid">
 
-<div class="dimension">
 
-<h4>
-Length
-</h4>
+<div class="dimension-card">
+
+<h3>
+Length — L
+</h3>
 
 <p>
-The physical outline of the slab can be established using the optical
-setup and its geometrical reference positions.
+
+The longitudinal geometry of the setup can be used to obtain
+the required dimension.
+
 </p>
 
 </div>
 
 
-<div class="dimension">
+<div class="dimension-card">
 
-<h4>
-Breadth
-</h4>
+<h3>
+Breadth — B
+</h3>
 
 <p>
-The corresponding transverse geometry can be established from the
-traced or referenced optical arrangement.
+
+The slab can be oriented so that the transverse dimension is
+represented in the optical arrangement.
+
 </p>
 
 </div>
 
 
-<div class="dimension">
+<div class="dimension-card">
 
-<h4>
-Thickness
-</h4>
+<h3>
+Thickness — t
+</h3>
 
 <p>
-The thickness is obtained from the optical displacement produced by
-the slab in the chosen setup.
+
+The apparent displacement caused by refraction can be related
+to the actual thickness.
+
 </p>
 
 </div>
@@ -1502,9 +1688,11 @@ the slab in the chosen setup.
 
 <div class="formula">
 
-<code>
+<div class="formula-title">
+Optical relationships
+</div>
 
-For refraction:
+<code>
 
 n₁ sin i = n₂ sin r
 
@@ -1519,61 +1707,6 @@ d = t · sin(i − r) / cos r
 </div>
 
 
-<div class="apparatus-box">
-
-<h3>
-Interactive 3D-Style Apparatus
-</h3>
-
-<p class="apparatus-sub">
-Convex lens → glass slab → screen.
-</p>
-
-<div class="scene">
-
-<div class="lab-table"></div>
-
-<div class="lens"></div>
-
-<div class="model-slab"></div>
-
-<div class="screen"></div>
-
-<div class="light-ray"></div>
-
-</div>
-
-</div>
-
-
-<div class="demo">
-
-<h3>
-▶ Sample Animated Demonstration
-</h3>
-
-<p class="demo-description">
-Conceptual ray path showing how light interacts with the optical setup.
-</p>
-
-<button class="btn"
-onclick="runAnimation(this,'opticalDemo')">
-Run Sample Demonstration
-</button>
-
-<div id="opticalDemo" class="animation" style="margin-top:20px;">
-
-<div class="optical-glass"></div>
-
-<div class="optical-ray or1"></div>
-
-<div class="optical-ray or2"></div>
-
-</div>
-
-</div>
-
-
 <div class="photos">
 
 <h3>
@@ -1582,15 +1715,71 @@ Our Optical Experiment 📸
 
 <div class="photo-grid">
 
-<img src="images/Optical%201.jpeg" alt="Optical experiment 1">
 
-<img src="images/Optical%202.jpeg" alt="Optical experiment 2">
+<figure>
 
-<img src="images/Optical%203.jpeg" alt="Optical experiment 3">
+<img
+src="images/Optical%201.jpeg"
+alt="Optical method photo 1">
 
-<img src="images/Optical%204.jpeg" alt="Optical experiment 4">
+<figcaption>
+Optical Method — Photo 1
+</figcaption>
 
-<img src="images/Optical%205.jpeg" alt="Optical experiment 5">
+</figure>
+
+
+<figure>
+
+<img
+src="images/Optical%202.jpeg"
+alt="Optical method photo 2">
+
+<figcaption>
+Optical Method — Photo 2
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Optical%203.jpeg"
+alt="Optical method photo 3">
+
+<figcaption>
+Optical Method — Photo 3
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Optical%204.jpeg"
+alt="Optical method photo 4">
+
+<figcaption>
+Optical Method — Photo 4
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Optical%205.jpeg"
+alt="Optical method photo 5">
+
+<figcaption>
+Optical Method — Photo 5
+</figcaption>
+
+</figure>
+
 
 </div>
 
@@ -1601,29 +1790,35 @@ Our Optical Experiment 📸
 </section>
 
 
-<!-- ===================================================== -->
-<!-- METHOD 3 : PHOTOGRAPHY -->
-<!-- ===================================================== -->
+<!-- =========================================
+     03 PHOTOGRAPHY
+========================================= -->
 
-<section id="photography" class="section">
+<section id="photography" class="method">
 
-<div class="wrap">
+<div class="container">
 
-<div class="section-head">
+<div class="method-header">
 
-<div class="number">
+<div class="method-number">
 03
 </div>
 
 <div>
+
+<div class="eyebrow">
+Third Approach
+</div>
 
 <h2>
 Photography / Pixel Method
 </h2>
 
 <p>
-Then we realised that a photograph isn't just a picture—it is a
-coordinate system made of pixels.
+
+Then came a more modern approach: instead of measuring the
+glass slab directly, we measured it inside a photograph.
+
 </p>
 
 </div>
@@ -1639,10 +1834,11 @@ Physics Principle
 
 <p>
 
-A digital image is composed of pixels. If a reference object of known
-physical dimension appears in the same image plane as the glass slab,
-its pixel dimension can establish a scale factor. That scale can then
-be applied to the slab's pixel dimensions.
+A digital photograph consists of pixels. If an object of known
+physical size is placed in the same image as the glass slab,
+the ratio between its actual size and pixel size provides a
+scale factor. The pixel dimensions of the slab can then be
+converted into physical dimensions.
 
 </p>
 
@@ -1651,13 +1847,17 @@ be applied to the slab's pixel dimensions.
 
 <div class="formula">
 
+<div class="formula-title">
+Pixel Calibration
+</div>
+
 <code>
 
 Scale = Actual reference size ÷ Reference size in pixels
 
 <br><br>
 
-Slab dimension =
+Actual slab dimension =
 Slab dimension in pixels × Scale
 
 </code>
@@ -1665,9 +1865,10 @@ Slab dimension in pixels × Scale
 </div>
 
 
-<div class="cards">
+<div class="info-grid">
 
-<div class="card">
+
+<div class="info-card">
 
 <h3>
 Apparatus
@@ -1676,17 +1877,21 @@ Apparatus
 <ul>
 
 <li>Glass slab</li>
+
 <li>Smartphone/camera</li>
+
 <li>Reference object</li>
+
 <li>Stable flat surface</li>
-<li>Pixel measurement application</li>
+
+<li>Pixel measurement software</li>
 
 </ul>
 
 </div>
 
 
-<div class="card">
+<div class="info-card">
 
 <h3>
 Procedure
@@ -1694,20 +1899,26 @@ Procedure
 
 <ol>
 
-<li>Place a known reference beside the slab.</li>
-<li>Keep both in approximately the same plane.</li>
-<li>Take a photograph from a suitable position.</li>
+<li>Place a known reference near the slab.</li>
+
+<li>Keep both approximately in the same plane.</li>
+
+<li>Take a clear photograph.</li>
+
 <li>Measure the reference in pixels.</li>
+
 <li>Measure the slab in pixels.</li>
-<li>Calculate the scale factor.</li>
-<li>Convert the dimensions into physical units.</li>
+
+<li>Calculate the scale.</li>
+
+<li>Convert pixels into physical units.</li>
 
 </ol>
 
 </div>
 
 
-<div class="card">
+<div class="info-card">
 
 <h3>
 Important Points
@@ -1716,9 +1927,13 @@ Important Points
 <ul>
 
 <li>Keep the camera perpendicular.</li>
-<li>Avoid perspective distortion.</li>
+
+<li>Minimise perspective distortion.</li>
+
 <li>Use sharp edges.</li>
-<li>Keep the reference close to the slab.</li>
+
+<li>Keep the reference close.</li>
+
 <li>Repeat measurements.</li>
 
 </ul>
@@ -1728,98 +1943,53 @@ Important Points
 </div>
 
 
-<div class="dimension-box">
-
-<div class="dimension">
-
-<h4>
-Length
-</h4>
-
-<p>
-Measure the slab's length in pixels and convert it using the reference
-scale.
-</p>
-
-</div>
+<div class="dimension-grid">
 
 
-<div class="dimension">
-
-<h4>
-Breadth
-</h4>
-
-<p>
-Measure the transverse pixel distance and apply the same calibration.
-</p>
-
-</div>
-
-
-<div class="dimension">
-
-<h4>
-Thickness
-</h4>
-
-<p>
-Use a suitable front/side view so the thickness can be resolved in
-pixels.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="apparatus-box">
+<div class="dimension-card">
 
 <h3>
-Interactive 3D-Style Apparatus
+Length — L
 </h3>
 
-<p class="apparatus-sub">
-Phone/camera + reference block + glass slab.
+<p>
+
+Measure the long edge in pixels and multiply it by the
+calibrated physical scale.
+
 </p>
 
-<div class="scene">
-
-<div class="lab-table"></div>
-
-<div class="phone-model">
-
-<div class="phone-screen"></div>
-
-</div>
-
-<div class="model-slab"></div>
-
-<div class="reference-block"></div>
-
-</div>
-
 </div>
 
 
-<div class="demo">
+<div class="dimension-card">
 
 <h3>
-▶ Sample Animated Demonstration
+Breadth — B
 </h3>
 
-<p class="demo-description">
-Conceptual demonstration of pixel calibration.
+<p>
+
+Measure the shorter top-view dimension and use the same
+pixel-to-length calibration.
+
 </p>
 
-<button class="btn"
-onclick="runAnimation(this,'photoDemo')">
-Run Sample Demonstration
-</button>
+</div>
 
-<div id="photoDemo" class="animation" style="margin-top:20px;">
 
-<div class="pixel-slab"></div>
+<div class="dimension-card">
+
+<h3>
+Thickness — t
+</h3>
+
+<p>
+
+Use a front or side photograph in which the thickness is
+clearly visible.
+
+</p>
 
 </div>
 
@@ -1834,15 +2004,71 @@ Our Photography Experiment 📸
 
 <div class="photo-grid">
 
-<img src="images/Photography%201.jpeg" alt="Photography experiment 1">
 
-<img src="images/Photography%202.jpeg" alt="Photography experiment 2">
+<figure>
 
-<img src="images/Photography%203.jpeg" alt="Photography experiment 3">
+<img
+src="images/Photography%201.jpeg"
+alt="Photography method photo 1">
 
-<img src="images/Photography%204.jpeg" alt="Photography experiment 4">
+<figcaption>
+Photography — Photo 1
+</figcaption>
 
-<img src="images/Photography%205.jpeg" alt="Photography experiment 5">
+</figure>
+
+
+<figure>
+
+<img
+src="images/Photography%202.jpeg"
+alt="Photography method photo 2">
+
+<figcaption>
+Photography — Photo 2
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Photography%203.jpeg"
+alt="Photography method photo 3">
+
+<figcaption>
+Photography — Photo 3
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Photography%204.jpeg"
+alt="Photography method photo 4">
+
+<figcaption>
+Photography — Photo 4
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Photography%205.jpeg"
+alt="Photography method photo 5">
+
+<figcaption>
+Photography — Photo 5
+</figcaption>
+
+</figure>
+
 
 </div>
 
@@ -1853,28 +2079,35 @@ Our Photography Experiment 📸
 </section>
 
 
-<!-- ===================================================== -->
-<!-- METHOD 4 : PARALLAX -->
-<!-- ===================================================== -->
+<!-- =========================================
+     04 PARALLAX
+========================================= -->
 
-<section id="parallax" class="section">
+<section id="parallax" class="method">
 
-<div class="wrap">
+<div class="container">
 
-<div class="section-head">
+<div class="method-header">
 
-<div class="number">
+<div class="method-number">
 04
 </div>
 
 <div>
+
+<div class="eyebrow">
+Fourth Approach
+</div>
 
 <h2>
 Parallax Method
 </h2>
 
 <p>
-Our fourth approach changed the observer rather than the object.
+
+Our final main approach changed the position of the observer
+rather than the glass slab.
+
 </p>
 
 </div>
@@ -1890,19 +2123,20 @@ Physics Principle
 
 <p>
 
-Parallax is the apparent displacement of an object when it is viewed
-from different positions. The amount of apparent displacement depends
-on the geometry of the object, observer and baseline. By controlling
-these quantities, dimensional information can be obtained indirectly.
+Parallax is the apparent displacement of an object when it is
+viewed from different positions. When the observer moves through
+a known baseline, the apparent position of the object changes.
+This displacement can be analysed using geometry.
 
 </p>
 
 </div>
 
 
-<div class="cards">
+<div class="info-grid">
 
-<div class="card">
+
+<div class="info-card">
 
 <h3>
 Apparatus
@@ -1911,10 +2145,15 @@ Apparatus
 <ul>
 
 <li>Glass slab</li>
-<li>Camera/eye</li>
+
+<li>Eye/camera</li>
+
 <li>Reference object</li>
+
 <li>Known baseline</li>
+
 <li>Scale</li>
+
 <li>Stable support</li>
 
 </ul>
@@ -1922,7 +2161,7 @@ Apparatus
 </div>
 
 
-<div class="card">
+<div class="info-card">
 
 <h3>
 Procedure
@@ -1931,12 +2170,19 @@ Procedure
 <ol>
 
 <li>Fix the glass slab.</li>
-<li>Place a suitable reference object.</li>
+
+<li>Choose a suitable reference.</li>
+
 <li>Observe from the first position.</li>
+
 <li>Record the apparent position.</li>
+
 <li>Move through a known baseline.</li>
-<li>Record the second apparent position.</li>
-<li>Measure the displacement.</li>
+
+<li>Observe again.</li>
+
+<li>Determine the apparent displacement.</li>
+
 <li>Apply the appropriate geometry.</li>
 
 </ol>
@@ -1944,16 +2190,16 @@ Procedure
 </div>
 
 
-<div class="card">
+<div class="info-card">
 
 <h3>
-Key Concept
+Key Idea
 </h3>
 
 <p>
 
-The slab remains fixed. The observer changes position, producing an
-apparent shift that contains geometrical information.
+The glass slab remains stationary. The observer moves, producing
+an apparent shift that contains information about the geometry.
 
 </p>
 
@@ -1962,44 +2208,52 @@ apparent shift that contains geometrical information.
 </div>
 
 
-<div class="dimension-box">
+<div class="dimension-grid">
 
-<div class="dimension">
 
-<h4>
-Length
-</h4>
+<div class="dimension-card">
+
+<h3>
+Length — L
+</h3>
 
 <p>
-The apparent positions of relevant longitudinal edges can be used to
-establish the length through calibrated geometry.
+
+The apparent positions of the relevant edges can be compared
+from different viewpoints.
+
 </p>
 
 </div>
 
 
-<div class="dimension">
+<div class="dimension-card">
 
-<h4>
-Breadth
-</h4>
+<h3>
+Breadth — B
+</h3>
 
 <p>
-A suitable lateral viewing geometry allows the breadth to be inferred.
+
+A lateral viewing arrangement can be used to analyse the
+transverse dimension.
+
 </p>
 
 </div>
 
 
-<div class="dimension">
+<div class="dimension-card">
 
-<h4>
-Thickness
-</h4>
+<h3>
+Thickness — t
+</h3>
 
 <p>
-The apparent displacement between surfaces or edges can provide
-information about thickness.
+
+The apparent displacement between surfaces can be used to
+infer the slab's thickness.
+
 </p>
 
 </div>
@@ -2009,69 +2263,19 @@ information about thickness.
 
 <div class="formula">
 
+<div class="formula-title">
+Parallax Geometry
+</div>
+
 <code>
 
-Parallax angle θ ≈ apparent displacement ÷ observation distance
+θ ≈ apparent displacement ÷ observation distance
 
 <br><br>
 
-The final dimensional equation depends on the exact experimental
-geometry used.
+The exact final equation depends on the geometry of the setup.
 
 </code>
-
-</div>
-
-
-<div class="apparatus-box">
-
-<h3>
-Interactive 3D-Style Apparatus
-</h3>
-
-<p class="apparatus-sub">
-Two observation positions viewing the same glass slab.
-</p>
-
-<div class="scene">
-
-<div class="lab-table"></div>
-
-<div class="model-slab"></div>
-
-<div class="camera" style="left:15%;right:auto;"></div>
-
-<div class="camera"></div>
-
-</div>
-
-</div>
-
-
-<div class="demo">
-
-<h3>
-▶ Sample Animated Demonstration
-</h3>
-
-<p class="demo-description">
-Conceptual demonstration of viewpoint change and apparent displacement.
-</p>
-
-<button class="btn"
-onclick="runAnimation(this,'parallaxDemo')">
-Run Sample Demonstration
-</button>
-
-<div id="parallaxDemo" class="animation" style="margin-top:20px;">
-
-<div class="parallax-slab"></div>
-
-<div class="eye one">👁️</div>
-
-<div class="eye two">👁️</div>
-
-</div>
 
 </div>
 
@@ -2084,15 +2288,71 @@ Our Parallax Experiment 📸
 
 <div class="photo-grid">
 
-<img src="images/For%20parallax%201.jpeg" alt="Parallax experiment 1">
 
-<img src="images/For%20parallax%202.jpeg" alt="Parallax experiment 2">
+<figure>
 
-<img src="images/For%20parallax%203.jpeg" alt="Parallax experiment 3">
+<img
+src="images/For%20parallax%201.jpeg"
+alt="Parallax method photo 1">
 
-<img src="images/For%20parallax%204.jpeg" alt="Parallax experiment 4">
+<figcaption>
+Parallax — Photo 1
+</figcaption>
 
-<img src="images/For%20parallax%205.jpeg" alt="Parallax experiment 5">
+</figure>
+
+
+<figure>
+
+<img
+src="images/For%20parallax%202.jpeg"
+alt="Parallax method photo 2">
+
+<figcaption>
+Parallax — Photo 2
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/For%20parallax%203.jpeg"
+alt="Parallax method photo 3">
+
+<figcaption>
+Parallax — Photo 3
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/For%20parallax%204.jpeg"
+alt="Parallax method photo 4">
+
+<figcaption>
+Parallax — Photo 4
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/For%20parallax%205.jpeg"
+alt="Parallax method photo 5">
+
+<figcaption>
+Parallax — Photo 5
+</figcaption>
+
+</figure>
+
 
 </div>
 
@@ -2103,78 +2363,79 @@ Our Parallax Experiment 📸
 </section>
 
 
-<!-- ===================================================== -->
-<!-- FREE FALL FAILURE -->
-<!-- ===================================================== -->
+<!-- =========================================
+     FREE FALL
+========================================= -->
 
 <section id="failure" class="failure">
 
-<div class="wrap">
+<div class="container">
 
 <div class="failure-box">
 
 <div class="eyebrow">
-05 · The failed attempt
+05 · The Plot Twist
 </div>
 
 <h2>
-Then came free fall. 😭
+Then came Free Fall.
 </h2>
 
-<p style="color:#637286;margin-bottom:20px">
+<p style="color:#667588;">
 
-After four different approaches, we also considered a free-fall based
-method. The basic idea was to use a falling object and timing measurements
-to obtain information indirectly.
-
-</p>
-
-<h3>
-But there was one problem:
-</h3>
-
-<p style="font-size:1.2rem;font-weight:700;margin:15px 0;color:#a65718">
-
-We couldn't find the right ball.
-
-</p>
-
-<p style="color:#637286">
-
-The object needed to be suitable for a controlled and repeatable
-release. Without an appropriate ball, the experimental setup became
-difficult to standardise.
+After completing our four main approaches, we also considered
+a free-fall method. The idea was to use the motion of a falling
+object and timing information to obtain a measurement indirectly.
 
 </p>
 
 
-<ul style="margin-top:20px">
+<div class="failure-highlight">
+
+We couldn't find the right ball for the experiment.
+
+</div>
+
+
+<p style="color:#667588;">
+
+And even apart from the ball, several practical difficulties
+would have affected the accuracy of the method.
+
+</p>
+
+
+<ul class="failure-list">
 
 <li>
-The ball has a finite size, making the exact release position uncertain.
+<strong>Ball size:</strong>
+The ball is not a mathematical point, so its size introduces
+uncertainty in locating its centre.
 </li>
 
 <li>
-The ball may not be released from exactly the same point each time.
+<strong>Release uncertainty:</strong>
+The object has to be released without an unintended push.
 </li>
 
 <li>
-Short fall times make manual timing particularly sensitive to reaction
-time.
+<strong>Timing error:</strong>
+For a short fall, human reaction time can become significant.
 </li>
 
 <li>
-Small changes in alignment affect the measured distance.
+<strong>Alignment:</strong>
+The motion needs to follow the intended path.
 </li>
 
 <li>
-Air resistance and the actual motion of the object can introduce
-additional differences from an ideal model.
+<strong>Measurement uncertainty:</strong>
+Small errors in distance and time can affect the calculated result.
 </li>
 
 <li>
-Repeated trials would be necessary to distinguish random variation
-from systematic error.
+<strong>Repeatability:</strong>
+Multiple trials would be required for a reliable measurement.
 </li>
 
 </ul>
@@ -2183,25 +2444,76 @@ from systematic error.
 <div class="photos">
 
 <h3>
-Our Free-Fall Attempt 📸
+Evidence of the Attempt 📸
 </h3>
 
 <div class="photo-grid">
 
-<img src="images/Free%20fall%201.jpeg"
+
+<figure>
+
+<img
+src="images/Free%20fall%201.jpeg"
 alt="Free fall attempt 1">
 
-<img src="images/Free%20fal%202.jpeg"
+<figcaption>
+Free Fall — Photo 1
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Free%20fal%202.jpeg"
 alt="Free fall attempt 2">
 
-<img src="images/Free%20fal%203.jpeg"
+<figcaption>
+Free Fall — Photo 2
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Free%20fal%203.jpeg"
 alt="Free fall attempt 3">
 
-<img src="images/Free%20fal%204.jpeg"
+<figcaption>
+Free Fall — Photo 3
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Free%20fal%204.jpeg"
 alt="Free fall attempt 4">
 
-<img src="images/Free%20fal%205.jpg"
+<figcaption>
+Free Fall — Photo 4
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Free%20fal%205.jpg"
 alt="Free fall attempt 5">
+
+<figcaption>
+Free Fall — Photo 5
+</figcaption>
+
+</figure>
+
 
 </div>
 
@@ -2214,28 +2526,30 @@ alt="Free fall attempt 5">
 </section>
 
 
-<!-- ===================================================== -->
-<!-- OBSERVATION TABLES -->
-<!-- ===================================================== -->
+<!-- =========================================
+     OBSERVATIONS
+========================================= -->
 
 <section id="observations" class="observations">
 
-<div class="wrap">
+<div class="container">
 
 <div class="eyebrow">
-06 · What did we actually get?
+06 · Recorded Observations
 </div>
 
-<h2 style="font-size:clamp(2.4rem,5vw,4rem);">
+<h2>
 Our Observation Tables
 </h2>
 
-<p style="max-width:800px;color:#64748b;margin-top:15px">
+<p style="
+max-width:820px;
+color:#667588;
+margin-top:15px;
+">
 
-After completing the different approaches, we organised the recorded
-values into observation tables. These values are presented as our
-experimental records; they should be interpreted together with the
-uncertainties and limitations of each method.
+After going through the methods, we can now look at the
+observations collected during the experiment.
 
 </p>
 
@@ -2244,52 +2558,80 @@ uncertainties and limitations of each method.
 
 <div class="sheet">
 
+<div class="sheet-header">
+
+<div class="sheet-number">
+01
+</div>
+
 <h3>
-1. Shadow Method — Dimensions
+Shadow Method — Dimensions
 </h3>
+
+</div>
+
+
+<div class="table-wrap">
 
 <table>
 
-<tr>
-<th>Dimension</th>
-<th>Image size (cm)</th>
-<th>u (cm)</th>
-<th>v (cm)</th>
-<th>Actual dimension (cm)</th>
-</tr>
+<thead>
 
 <tr>
-<td><b>Length (L)</b></td>
+
+<th>Dimension</th>
+<th>Image Size (cm)</th>
+<th>u (cm)</th>
+<th>v (cm)</th>
+<th>Measured Dimension (cm)</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td><strong>Length (L)</strong></td>
 <td>4.7</td>
 <td>27.5</td>
 <td>19.0</td>
-<td>8.46</td>
+<td><strong>8.46</strong></td>
+
 </tr>
 
 <tr>
-<td><b>Breadth (B)</b></td>
+
+<td><strong>Breadth (B)</strong></td>
 <td>3.4</td>
 <td>22.8</td>
 <td>16.8</td>
-<td>6.05</td>
+<td><strong>6.05</strong></td>
+
 </tr>
 
 <tr>
-<td><b>Thickness (t)</b></td>
+
+<td><strong>Thickness (t)</strong></td>
 <td>1.0</td>
 <td>24.5</td>
 <td>19.5</td>
-<td>1.83</td>
+<td><strong>1.83</strong></td>
+
 </tr>
+
+</tbody>
 
 </table>
 
-<div class="result">
+</div>
 
-Result:
-L = 8.46 cm &nbsp; | &nbsp;
-B = 6.05 cm &nbsp; | &nbsp;
-t = 1.83 cm
+
+<div class="result-box">
+
+Shadow Result:
+L = 8.46 cm • B = 6.05 cm • t = 1.83 cm
 
 </div>
 
@@ -2300,50 +2642,80 @@ t = 1.83 cm
 
 <div class="sheet">
 
+<div class="sheet-header">
+
+<div class="sheet-number">
+02
+</div>
+
 <h3>
-2. Optical Method — Thickness
+Optical Method — Observation
 </h3>
+
+</div>
+
+
+<div class="table-wrap">
 
 <table>
 
-<tr>
-<th>Observation</th>
-<th>Image size (cm)</th>
-<th>u (cm)</th>
-<th>v (cm)</th>
-<th>Actual thickness (cm)</th>
-</tr>
+<thead>
 
 <tr>
-<td>(A)</td>
+
+<th>Observation</th>
+<th>Image Size (cm)</th>
+<th>u (cm)</th>
+<th>v (cm)</th>
+<th>Measured Value (cm)</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>A</td>
 <td>4.7</td>
 <td>29.5</td>
 <td>1.5</td>
-<td>8.46</td>
+<td><strong>8.46</strong></td>
+
 </tr>
 
 <tr>
-<td>(B)</td>
+
+<td>B</td>
 <td>3.4</td>
 <td>23.8</td>
 <td>13.3</td>
-<td>6.05</td>
+<td><strong>6.05</strong></td>
+
 </tr>
 
 <tr>
-<td>(T)</td>
+
+<td>T</td>
 <td>1.0</td>
 <td>27.5</td>
 <td>15.0</td>
-<td>1.83</td>
+<td><strong>1.83</strong></td>
+
 </tr>
+
+</tbody>
 
 </table>
 
-<div class="result">
+</div>
 
-Recorded thickness result:
-t = 1.83 cm
+
+<div class="result-box">
+
+Optical Result:
+8.46 cm • 6.05 cm • 1.83 cm
 
 </div>
 
@@ -2354,260 +2726,241 @@ t = 1.83 cm
 
 <div class="sheet">
 
+<div class="sheet-header">
+
+<div class="sheet-number">
+03
+</div>
+
 <h3>
-3. Photography Pixel Method
+Photography / Pixel Method
 </h3>
+
+</div>
+
+
+<div class="table-wrap">
 
 <table>
 
+<thead>
+
 <tr>
 
-<th>
-Dimension
-</th>
-
-<th>
-Reference actual length (mm)
-</th>
-
-<th>
-Reference object (pixels)
-</th>
-
-<th>
-Glass slab (pixels)
-</th>
-
-<th>
-Scale (mm/pixel)
-</th>
-
-<th>
-Calculated dimension (mm)
-</th>
+<th>Dimension</th>
+<th>Reference Actual (mm)</th>
+<th>Reference Pixels</th>
+<th>Glass Slab Pixels</th>
+<th>Scale (mm/pixel)</th>
+<th>Calculated (mm)</th>
 
 </tr>
 
+</thead>
+
+<tbody>
 
 <tr>
 
-<td><b>Length (L)</b></td>
-
+<td><strong>Length</strong></td>
 <td>9.30</td>
-
 <td>1374.1</td>
-
 <td>1179.7</td>
-
 <td>0.00677</td>
-
-<td>7.98</td>
+<td><strong>7.98</strong></td>
 
 </tr>
 
-
 <tr>
 
-<td><b>Breadth (B)</b></td>
-
+<td><strong>Breadth</strong></td>
 <td>9.30</td>
-
 <td>1422.0</td>
-
 <td>787.6</td>
-
 <td>0.00654</td>
-
-<td>5.15</td>
+<td><strong>5.15</strong></td>
 
 </tr>
 
-
 <tr>
 
-<td><b>Thickness (t)</b></td>
-
+<td><strong>Thickness</strong></td>
 <td>4.30</td>
-
 <td>596.1</td>
-
 <td>320.4</td>
-
 <td>0.00721</td>
-
-<td>2.31</td>
+<td><strong>2.31</strong></td>
 
 </tr>
 
+</tbody>
+
 </table>
 
+</div>
 
-<div class="result">
 
-Final photography dimensions:
-L = 7.98 mm &nbsp; | &nbsp;
-B = 5.15 mm &nbsp; | &nbsp;
-t = 2.31 mm
+<div class="result-box">
+
+Photography Result:
+L = 7.98 mm • B = 5.15 mm • t = 2.31 mm
 
 </div>
 
 </div>
 
 
-<!-- PARALLAX LENGTH -->
+<!-- PARALLAX TABLE -->
 
 <div class="sheet">
 
+<div class="sheet-header">
+
+<div class="sheet-number">
+04
+</div>
+
 <h3>
-4. Parallax Method — Length
+Parallax Method — Observations
 </h3>
+
+</div>
+
+
+<div class="no-data">
+
+No numerical values were recorded for the Parallax Method.
+
+The method was studied and attempted, but a complete set of
+numerical observations was not obtained.
+
+</div>
+
+
+<br>
+
+
+<div class="table-wrap">
 
 <table>
 
-<tr>
-<th>Observation</th>
-<th>u (cm)</th>
-<th>v (cm)</th>
-<th>L (cm)</th>
-</tr>
+<thead>
 
 <tr>
-<td>1</td>
-<td>28.5</td>
-<td>20.0</td>
-<td>8.5</td>
+
+<th>Dimension</th>
+<th>Observation 1</th>
+<th>Observation 2</th>
+<th>Observation 3</th>
+<th>Mean</th>
+
 </tr>
 
-<tr>
-<td>2</td>
-<td>29.0</td>
-<td>20.5</td>
-<td>8.5</td>
-</tr>
+</thead>
+
+<tbody>
 
 <tr>
-<td>3</td>
-<td>28.8</td>
-<td>20.3</td>
-<td>8.5</td>
-</tr>
 
-<tr>
-<td><b>Mean</b></td>
+<td><strong>Length (L)</strong></td>
 <td>—</td>
 <td>—</td>
-<td><b>8.5</b></td>
+<td>—</td>
+<td>—</td>
+
 </tr>
+
+<tr>
+
+<td><strong>Breadth (B)</strong></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+
+</tr>
+
+<tr>
+
+<td><strong>Thickness (t)</strong></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+
+</tr>
+
+</tbody>
 
 </table>
 
 </div>
 
+</div>
 
-<!-- PARALLAX BREADTH -->
+
+<!-- REFERENCE TABLE -->
 
 <div class="sheet">
 
+<div class="sheet-header">
+
+<div class="sheet-number">
+R
+</div>
+
 <h3>
-Parallax Method — Breadth
+Reference Dimensions of the Glass Slab
 </h3>
-
-<table>
-
-<tr>
-<th>Observation</th>
-<th>u (cm)</th>
-<th>v (cm)</th>
-<th>B (cm)</th>
-</tr>
-
-<tr>
-<td>1</td>
-<td>25.5</td>
-<td>19.5</td>
-<td>6.0</td>
-</tr>
-
-<tr>
-<td>2</td>
-<td>26.0</td>
-<td>20.0</td>
-<td>6.0</td>
-</tr>
-
-<tr>
-<td>3</td>
-<td>25.8</td>
-<td>19.8</td>
-<td>6.0</td>
-</tr>
-
-<tr>
-<td><b>Mean</b></td>
-<td>—</td>
-<td>—</td>
-<td><b>6.0</b></td>
-</tr>
-
-</table>
 
 </div>
 
 
-<!-- PARALLAX THICKNESS -->
-
-<div class="sheet">
-
-<h3>
-Parallax Method — Thickness
-</h3>
+<div class="table-wrap">
 
 <table>
 
+<thead>
+
 <tr>
-<th>Observation</th>
-<th>u (cm)</th>
-<th>v (cm)</th>
-<th>t (cm)</th>
+
+<th>Dimension</th>
+<th>Reference Value</th>
+<th>Unit</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td><strong>Length (L)</strong></td>
+<td><strong>8.0</strong></td>
+<td>cm</td>
+
 </tr>
 
 <tr>
-<td>1</td>
-<td>25.0</td>
-<td>23.2</td>
-<td>1.82</td>
+
+<td><strong>Breadth (B)</strong></td>
+<td><strong>5.3</strong></td>
+<td>cm</td>
+
 </tr>
 
 <tr>
-<td>2</td>
-<td>27.0</td>
-<td>25.2</td>
-<td>1.83</td>
+
+<td><strong>Thickness / Height (t)</strong></td>
+<td><strong>2.3</strong></td>
+<td>cm</td>
+
 </tr>
 
-<tr>
-<td>3</td>
-<td>29.0</td>
-<td>27.2</td>
-<td>1.84</td>
-</tr>
-
-<tr>
-<td><b>Mean</b></td>
-<td>—</td>
-<td>—</td>
-<td><b>1.83</b></td>
-</tr>
+</tbody>
 
 </table>
-
-
-<div class="result">
-
-Parallax result:
-L = 8.5 cm &nbsp; | &nbsp;
-B = 6.0 cm &nbsp; | &nbsp;
-t = 1.83 cm
 
 </div>
 
@@ -2624,15 +2977,71 @@ The Team Behind the Experiment 📸
 
 <div class="photo-grid">
 
-<img src="images/Group%20photos%201.jpeg" alt="Group photo 1">
 
-<img src="images/Group%20photos%202.jpeg" alt="Group photo 2">
+<figure>
 
-<img src="images/Group%20photos%203.jpeg" alt="Group photo 3">
+<img
+src="images/Group%20photos%201.jpeg"
+alt="Group photo 1">
 
-<img src="images/Group%20photos%204.jpeg" alt="Group photo 4">
+<figcaption>
+Group Photo 1
+</figcaption>
 
-<img src="images/Group%20photos%205.jpeg" alt="Group photo 5">
+</figure>
+
+
+<figure>
+
+<img
+src="images/Group%20photos%202.jpeg"
+alt="Group photo 2">
+
+<figcaption>
+Group Photo 2
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Group%20photos%203.jpeg"
+alt="Group photo 3">
+
+<figcaption>
+Group Photo 3
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Group%20photos%204.jpeg"
+alt="Group photo 4">
+
+<figcaption>
+Group Photo 4
+</figcaption>
+
+</figure>
+
+
+<figure>
+
+<img
+src="images/Group%20photos%205.jpeg"
+alt="Group photo 5">
+
+<figcaption>
+Group Photo 5
+</figcaption>
+
+</figure>
+
 
 </div>
 
@@ -2643,29 +3052,21 @@ The Team Behind the Experiment 📸
 </section>
 
 
-<!-- ===================================================== -->
-<!-- ERROR PERCENTAGES -->
-<!-- ===================================================== -->
+<!-- =========================================
+     ERROR ANALYSIS
+========================================= -->
 
-<section class="error-section">
+<section class="error">
 
-<div class="wrap">
+<div class="container">
 
 <div class="eyebrow">
 07 · Error Analysis
 </div>
 
-<h2 style="font-size:clamp(2.3rem,5vw,4rem);">
-How close were our methods?
+<h2>
+How close were our measurements?
 </h2>
-
-<p style="max-width:800px;color:#64748b;margin-top:15px">
-
-A measurement is never complete without discussing uncertainty.
-Percentage error gives us a way to express the difference between a
-measured value and a chosen reference value relative to that reference.
-
-</p>
 
 
 <div class="error-box">
@@ -2674,110 +3075,206 @@ measured value and a chosen reference value relative to that reference.
 Percentage Error
 </h3>
 
+
 <div class="error-formula">
 
 Percentage Error =
-|Measured value − Reference value|
-÷ Reference value × 100
+|Measured Value − Reference Value|
+÷ Reference Value × 100
 
 </div>
 
-<p style="color:#64748b">
 
-For comparison, if the Shadow Method values
-(L = 8.46 cm, B = 6.05 cm and t = 1.83 cm) are taken as a
-reference set, the other recorded results can be compared against them.
+<p style="color:#657487;">
 
-This is a <b>comparison between our methods</b>, not a claim that the
-shadow method is an absolute standard.
+Our reference dimensions were:
+
+<strong>
+Length = 8.0 cm,
+Breadth = 5.3 cm,
+Thickness = 2.3 cm
+</strong>.
 
 </p>
 
-</div>
 
+<div class="table-wrap" style="margin-top:25px;">
 
 <table>
 
+<thead>
+
 <tr>
 
-<th>
-Dimension
-</th>
+<th>Method</th>
+<th>Dimension</th>
+<th>Reference (cm)</th>
+<th>Measured (cm)</th>
+<th>Percentage Error</th>
 
-<th>
-Reference
-</th>
+</tr>
 
-<th>
-Photography
-</th>
+</thead>
 
-<th>
-Parallax
-</th>
+<tbody>
+
+
+<tr>
+
+<td rowspan="3">
+<strong>Shadow</strong>
+</td>
+
+<td>Length</td>
+<td>8.00</td>
+<td>8.46</td>
+<td><strong>5.75%</strong></td>
+
+</tr>
+
+<tr>
+
+<td>Breadth</td>
+<td>5.30</td>
+<td>6.05</td>
+<td><strong>14.15%</strong></td>
+
+</tr>
+
+<tr>
+
+<td>Thickness</td>
+<td>2.30</td>
+<td>1.83</td>
+<td><strong>20.43%</strong></td>
 
 </tr>
 
 
 <tr>
 
-<td><b>Length</b></td>
+<td rowspan="3">
+<strong>Optical</strong>
+</td>
 
-<td>8.46 cm</td>
+<td>Length*</td>
+<td>8.00</td>
+<td>8.46</td>
+<td><strong>5.75%</strong></td>
 
-<td>≈ 5.67%</td>
+</tr>
 
-<td>≈ 0.47%</td>
+<tr>
+
+<td>Breadth*</td>
+<td>5.30</td>
+<td>6.05</td>
+<td><strong>14.15%</strong></td>
+
+</tr>
+
+<tr>
+
+<td>Thickness</td>
+<td>2.30</td>
+<td>1.83</td>
+<td><strong>20.43%</strong></td>
 
 </tr>
 
 
 <tr>
 
-<td><b>Breadth</b></td>
+<td rowspan="3">
+<strong>Photography</strong>
+</td>
 
-<td>6.05 cm</td>
-
-<td>≈ 14.88%</td>
-
-<td>≈ 0.83%</td>
+<td>Length</td>
+<td>8.00</td>
+<td>0.798</td>
+<td><strong>90.03%</strong></td>
 
 </tr>
-
 
 <tr>
 
-<td><b>Thickness</b></td>
-
-<td>1.83 cm</td>
-
-<td>≈ 26.23%</td>
-
-<td>0%</td>
+<td>Breadth</td>
+<td>5.30</td>
+<td>0.515</td>
+<td><strong>90.28%</strong></td>
 
 </tr>
+
+<tr>
+
+<td>Thickness</td>
+<td>2.30</td>
+<td>0.231</td>
+<td><strong>89.96%</strong></td>
+
+</tr>
+
+
+</tbody>
 
 </table>
 
+</div>
 
-<div class="card">
+
+<div class="warning">
+
+<strong>Note:</strong>
+
+The Photography observations are recorded in millimetres.
+Therefore, they were converted to centimetres before comparing
+them with the reference dimensions.
+
+The Parallax Method has no percentage error because no numerical
+observations were recorded.
+
+</div>
+
+</div>
+
+
+<div class="error-box">
 
 <h3>
-What do these percentages tell us?
+Sources of Experimental Error
 </h3>
 
-<p>
+<ul class="failure-list">
 
-The percentages show that different measurement techniques can respond
-very differently to alignment, calibration, perspective, edge
-identification and other experimental uncertainties.
+<li>
+Alignment errors in the experimental setup.
+</li>
 
-A small percentage difference does not automatically prove a method
-is perfect, while a larger difference does not necessarily mean the
-physics is wrong. It can indicate that the particular setup requires
-better calibration, alignment or repeated trials.
+<li>
+Difficulty identifying the exact edges of the glass slab.
+</li>
 
-</p>
+<li>
+Perspective distortion in photographs.
+</li>
+
+<li>
+Reference-object calibration uncertainty.
+</li>
+
+<li>
+Parallax during visual observation.
+</li>
+
+<li>
+Limited image resolution.
+</li>
+
+<li>
+Human positioning and measurement errors.
+</li>
+
+</ul>
 
 </div>
 
@@ -2786,305 +3283,71 @@ better calibration, alignment or repeated trials.
 </section>
 
 
-<!-- ===================================================== -->
-<!-- TAPE MEASURE APP -->
-<!-- ===================================================== -->
+<!-- =========================================
+     FINAL TAPE MEASURE JOKE
+========================================= -->
 
-<section id="tape" class="tape">
+<section id="modern" class="modern">
 
-<div class="wrap">
+<div class="container">
 
-<div class="phone-large">
+<div class="phone">
 📱
 </div>
 
+<div class="eyebrow">
+08 · The Final Plot Twist
+</div>
+
 <h2>
-And then there was the Tape Measure App.
+After doing everything...
 </h2>
 
-<p class="tape-intro">
 
-After exploring shadows, optics, photography and parallax, we eventually
-looked at how modern smartphones approach the same basic problem:
-converting information captured by a camera into physical dimensions.
+<div class="final-joke">
+
+<p class="quote">
+
+“Or we can just use the Tape Measure app on our phone.”
 
 </p>
 
+</div>
 
-<div class="tech-grid">
-
-
-<div class="tech-card">
-
-<h3>
-1. Camera Geometry
-</h3>
 
 <p>
 
-The phone camera captures a two-dimensional image of the real world.
-From the way objects appear in the image, geometric relationships can
-be used to estimate distances and dimensions.
+After shadows, optics, pixels, parallax, calculations,
+alignment and a failed free-fall attempt...
+
+there was, apparently, another option.
 
 </p>
-
-</div>
-
-
-<div class="tech-card">
-
-<h3>
-2. Motion & Sensors
-</h3>
-
-<p>
-
-Modern phones contain motion sensors such as accelerometers and
-gyroscopes. These can help determine how the device moves and changes
-orientation while measurements are being made.
-
-</p>
-
-</div>
-
-
-<div class="tech-card">
-
-<h3>
-3. Spatial Mapping
-</h3>
-
-<p>
-
-Computer-vision systems can identify surfaces, edges and spatial
-relationships. By combining camera information with estimated
-three-dimensional geometry, the application can convert image-space
-measurements into real-world distances.
-
-</p>
-
-</div>
-
-
-<div class="tech-card">
-
-<h3>
-4. Calibration
-</h3>
-
-<p>
-
-The fundamental idea is similar to our photography method: image
-information needs a relationship to physical space. Instead of manually
-placing a reference object and counting pixels, the phone estimates
-scale using its camera and spatial information.
-
-</p>
-
-</div>
-
-
-<div class="tech-card">
-
-<h3>
-5. Computer Vision
-</h3>
-
-<p>
-
-The software analyses visual features such as edges, planes and
-reference points. Tracking these features while the phone moves lets
-the system estimate where surfaces exist in three-dimensional space.
-
-</p>
-
-</div>
-
-
-<div class="tech-card">
-
-<h3>
-6. The Modern Version
-</h3>
-
-<p>
-
-In other words, the underlying idea is still physics plus geometry—
-but the calculations, calibration and spatial tracking are performed
-automatically by the phone.
-
-</p>
-
-</div>
-
-</div>
-
-
-<div class="result" style="margin-top:35px;text-align:center">
-
-What took us multiple setups, measurements and a considerable amount
-of alignment…
-
-<br><br>
-
-<b>…can now be done with a phone.</b> 📱
-
-</div>
 
 </div>
 
 </section>
 
 
-<!-- ===================================================== -->
-<!-- ENDING -->
-<!-- ===================================================== -->
-
-<section class="ending">
-
-<div class="wrap">
-
-<div class="eyebrow" style="color:#69d6ff">
-08 · The conclusion
-</div>
-
-<h2>
-Physics took us the long way around.
-</h2>
-
-<p>
-
-We began with one question:
-
-<b>
-“How can we measure a glass slab indirectly?”
-</b>
-
-</p>
-
-<p>
-
-We tried shadows.
-
-Then optics.
-
-Then photography.
-
-Then parallax.
-
-Then we attempted free fall.
-
-And finally…
-
-</p>
-
-
-<p class="joke">
-
-📱
-
-<b>
-we got it in a phone.
-</b>
-
-</p>
-
-
-<p>
-
-The modern solution doesn't make the physics disappear.
-It simply puts the physics, geometry, sensors and computation
-inside the device.
-
-</p>
-
-
-<div class="buttons" style="justify-content:center">
-
-<a class="btn" href="#journey">
-↺ Relive the experiment
-</a>
-
-</div>
-
-</div>
-
-</section>
-
+<!-- =========================================
+     FOOTER
+========================================= -->
 
 <footer>
 
 <p>
-Physics Project • Determination of Dimensions of a Glass Slab by Indirect Methods
+
+Physics Project • Measurement of a Glass Slab by Indirect Methods
+
 </p>
 
-<p style="margin-top:8px">
-Shadow • Optical • Photography • Parallax • Free Fall • Modern Measurement
+<p style="margin-top:7px;">
+
+Shadow • Optical • Photography • Parallax • Free Fall
+
 </p>
 
 </footer>
-
-
-<script>
-
-/* =====================================================
-   SAMPLE ANIMATION CONTROLLER
-   ===================================================== */
-
-function runAnimation(button,id){
-
-const box=document.getElementById(id);
-
-button.disabled=true;
-
-button.textContent="Running demonstration…";
-
-box.style.opacity="0.45";
-
-setTimeout(function(){
-
-box.style.opacity="1";
-
-button.disabled=false;
-
-button.textContent="↻ Run Demonstration Again";
-
-},1800);
-
-}
-
-
-/* =====================================================
-   SMALL APPARATUS TILT INTERACTION
-   ===================================================== */
-
-document.querySelectorAll(".scene").forEach(function(scene){
-
-scene.addEventListener("mousemove",function(e){
-
-const rect=scene.getBoundingClientRect();
-
-const x=e.clientX-rect.left;
-const y=e.clientY-rect.top;
-
-const rotateY=(x/rect.width-0.5)*8;
-const rotateX=(y/rect.height-0.5)*-6;
-
-scene.style.transform=
-"perspective(900px) rotateX("+rotateX+"deg) rotateY("+rotateY+"deg)";
-
-});
-
-scene.addEventListener("mouseleave",function(){
-
-scene.style.transform=
-"perspective(900px) rotateX(0deg) rotateY(0deg)";
-
-});
-
-});
-
-</script>
 
 
 </body>
