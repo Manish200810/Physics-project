@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -1388,150 +1388,547 @@ tbody tr:hover{
 
 
 /* =========================================================
-   FINAL
+   FINAL THANK-YOU — REFERENCE DESIGN
 ========================================================= */
 
 .modern{
-
-    background:
-
-        radial-gradient(
-            circle at 15% 20%,
-            #ffdfea,
-            transparent 25%
-        ),
-
-        radial-gradient(
-            circle at 85% 80%,
-            #e2dcff,
-            transparent 28%
-        ),
-
-        #fff8fd;
-
-    text-align:center;
-
     position:relative;
+    overflow:hidden;
+    min-height:900px;
+    padding:75px 0;
+    background:
+        radial-gradient(circle at 8% 18%, rgba(211,215,255,.55), transparent 18%),
+        radial-gradient(circle at 96% 17%, rgba(228,222,255,.7), transparent 20%),
+        radial-gradient(circle at 88% 78%, rgba(207,202,255,.5), transparent 18%),
+        linear-gradient(135deg,#f9faff 0%,#f1f0ff 48%,#f8f7ff 100%);
+    text-align:center;
 }
 
-.phone{
-
-    font-size:5rem;
-
-    margin-bottom:15px;
-
-    filter:drop-shadow(5px 6px 0 #d9d0ea);
+/* Decorative background circles */
+.modern::before,
+.modern::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
 }
 
-.modern h2{
-
-    font-size:clamp(2.7rem,5vw,4.5rem);
-
-    color:var(--navy);
+.modern::before{
+    width:190px;
+    height:190px;
+    left:-80px;
+    top:105px;
+    background:rgba(211,215,255,.28);
+    box-shadow:
+        70px 560px 0 25px rgba(211,215,255,.20),
+        1540px 50px 0 35px rgba(224,220,255,.35);
 }
 
-.modern p{
-
-    max-width:750px;
-
-    margin:20px auto;
-
-    color:#667388;
+.modern::after{
+    width:250px;
+    height:250px;
+    right:-95px;
+    bottom:-45px;
+    background:rgba(214,210,255,.25);
+    box-shadow:
+        -80px -470px 0 15px rgba(221,218,255,.28),
+        -60px 230px 0 40px rgba(220,218,255,.20);
 }
 
-.modern h2{
-    font-size:clamp(2.7rem,5vw,4.5rem);
-    color:var(--navy);
-    margin-bottom:18px;
+/* Main white glass-like card */
+.modern .container{
+    position:relative;
+    z-index:3;
 }
 
-.thank-you{
-    max-width:850px;
-    margin:55px auto 0;
-    padding:42px 35px;
-    background:white;
-    border:3px solid #d8ccef;
-    border-radius:30px;
-    box-shadow:8px 9px 0 #e9e2f4;
+.thank-card{
+    position:relative;
+    width:min(1015px,90vw);
+    min-height:840px;
+    margin:auto;
+    padding:54px 70px 34px;
+    text-align:center;
+    border:2px solid rgba(255,255,255,.96);
+    border-radius:31px;
+    background:
+        radial-gradient(circle at 50% 12%, rgba(255,255,255,.98),
+        rgba(255,255,255,.78) 60%, rgba(246,243,255,.72)),
+        rgba(255,255,255,.82);
+    box-shadow:
+        0 22px 55px rgba(104,113,174,.18),
+        inset 0 0 55px rgba(255,255,255,.65);
+    backdrop-filter:blur(14px);
 }
 
-.thank-stars{
-    color:#9a84c8;
-    font-size:1.3rem;
-    letter-spacing:5px;
-    margin-bottom:12px;
-}
-
-.thank-you h3{
-    font-size:clamp(2.5rem,5vw,3.7rem);
-    color:#625095;
-    margin-bottom:18px;
-}
-
-.thank-main{
-    font-family:"Space Grotesk";
-    font-size:1.3rem;
-    font-weight:700;
-    color:#435b7d !important;
-}
-
-.thank-final{
-    margin-top:22px !important;
-    padding:20px 23px;
-    border-radius:19px;
-    background:#f5f1ff;
-    border:2px solid #e1d8f2;
-    color:#66598a !important;
-    font-weight:600;
-    font-style:italic;
-}
-
-.thank-line{
-    width:90px;
-    height:3px;
-    margin:27px auto 18px;
-    border-radius:10px;
-    background:#d5c7ec;
-}
-
-.thank-small{
-    font-size:.95rem !important;
-    font-weight:700;
-    color:#7c6aa5 !important;
-}
-
-.final-joke{
-
-    max-width:760px;
-
-    margin:35px auto;
-
-    padding:32px;
-
-    border-radius:25px;
-
-    background:white;
-
-    border:3px solid #d8ccef;
-
-    box-shadow:8px 8px 0 #e9e2f4;
-
+.final-glass{
+    position:absolute;
+    left:-165px;
+    top:130px;
+    width:235px;
+    height:270px;
     transform:rotate(-1deg);
+    opacity:.72;
+    pointer-events:none;
 }
 
-.final-joke .quote{
+.final-glass .glass-front{
+    position:absolute;
+    left:32px;
+    top:20px;
+    width:150px;
+    height:190px;
+    border:4px solid rgba(83,146,213,.7);
+    background:linear-gradient(135deg,
+        rgba(219,239,255,.5),
+        rgba(172,197,255,.14));
+    box-shadow:inset 0 0 25px rgba(103,160,224,.14);
+    transform:skewY(29deg);
+}
 
-    font-family:"Space Grotesk";
+.final-glass .glass-side{
+    position:absolute;
+    left:182px;
+    top:61px;
+    width:35px;
+    height:190px;
+    border:4px solid rgba(76,132,196,.65);
+    background:rgba(158,196,235,.18);
+    transform:skewY(-29deg);
+}
 
-    font-size:1.45rem;
+.final-glass .glass-top{
+    position:absolute;
+    left:47px;
+    top:7px;
+    width:150px;
+    height:40px;
+    border:4px solid rgba(83,146,213,.55);
+    background:rgba(222,241,255,.34);
+    transform:skewY(29deg);
+}
 
+.final-ray{
+    position:absolute;
+    height:2px;
+    width:250px;
+    left:-50px;
+    border-top:3px dashed rgba(94,144,230,.72);
+    transform-origin:right center;
+}
+
+.final-ray.one{
+    top:175px;
+    transform:rotate(31deg);
+}
+
+.final-ray.two{
+    top:238px;
+    transform:rotate(27deg);
+}
+
+.final-arrow{
+    position:absolute;
+    color:#769be0;
+    font-size:22px;
     font-weight:700;
+}
 
-    color:#625095;
+.final-arrow.one{
+    left:80px;
+    top:185px;
+    transform:rotate(31deg);
+}
+
+.final-arrow.two{
+    left:132px;
+    top:228px;
+    transform:rotate(28deg);
+}
+
+/* Right-side protractor */
+.final-protractor{
+    position:absolute;
+    right:-70px;
+    bottom:95px;
+    width:245px;
+    height:245px;
+    border:3px solid rgba(131,138,210,.45);
+    border-radius:245px 245px 0 0;
+    border-bottom:none;
+    transform:rotate(-18deg);
+    opacity:.6;
+    background:linear-gradient(180deg,
+        rgba(224,221,255,.2),
+        rgba(225,222,255,.05));
+    pointer-events:none;
+}
+
+.final-protractor::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:0;
+    width:3px;
+    height:210px;
+    background:rgba(131,138,210,.3);
+    transform:translateX(-50%);
+    box-shadow:
+        -58px -13px 0 -1px rgba(131,138,210,.35),
+        58px -13px 0 -1px rgba(131,138,210,.35);
+}
+
+.final-protractor .tick{
+    position:absolute;
+    bottom:0;
+    left:50%;
+    width:2px;
+    height:19px;
+    background:#8790cf;
+    transform-origin:50% 0;
+}
+
+.final-protractor .t1{transform:translateX(-50%) rotate(-65deg);}
+.final-protractor .t2{transform:translateX(-50%) rotate(-52deg);}
+.final-protractor .t3{transform:translateX(-50%) rotate(-39deg);}
+.final-protractor .t4{transform:translateX(-50%) rotate(-26deg);}
+.final-protractor .t5{transform:translateX(-50%) rotate(-13deg);}
+.final-protractor .t6{transform:translateX(-50%) rotate(0deg);}
+.final-protractor .t7{transform:translateX(-50%) rotate(13deg);}
+.final-protractor .t8{transform:translateX(-50%) rotate(26deg);}
+.final-protractor .t9{transform:translateX(-50%) rotate(39deg);}
+.final-protractor .t10{transform:translateX(-50%) rotate(52deg);}
+.final-protractor .t11{transform:translateX(-50%) rotate(65deg);}
+
+.final-protractor .p-label{
+    position:absolute;
+    color:#8d95cd;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:15px;
+    font-weight:600;
+}
+.final-protractor .p0{left:36px;bottom:17px;}
+.final-protractor .p10{left:66px;bottom:54px;}
+.final-protractor .p20{left:92px;bottom:78px;}
+.final-protractor .p30{right:91px;bottom:83px;}
+.final-protractor .p40{right:58px;bottom:60px;}
+
+.final-note{
+    position:absolute;
+    font-family:"Caveat",cursive;
+    color:#7f8ab9;
+    font-size:27px;
+    line-height:1.05;
+    font-weight:500;
+    pointer-events:none;
+}
+.final-note.left{
+    left:25px;
+    top:500px;
+    transform:rotate(-8deg);
+}
+.final-note.right{
+    right:80px;
+    top:235px;
+    transform:rotate(-7deg);
+}
+.final-note .underline{
+    display:block;
+    width:75px;
+    height:3px;
+    margin-top:9px;
+    background:#9ba4ce;
+    border-radius:5px;
+    transform:rotate(-8deg);
+}
+
+.top-label{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+    color:#687ba6;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:32px;
+}
+
+.top-label::before,
+.top-label::after{
+    content:"";
+    width:74px;
+    height:2px;
+    background:#b5addc;
+}
+
+.main-title{
+    display:inline-block;
+    position:relative;
+    margin-bottom:24px;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(4.2rem,7vw,6.5rem);
+    line-height:.98;
+    letter-spacing:-4px;
+    font-weight:700;
+    background:linear-gradient(90deg,#205cb0 8%,#7043d9 82%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.heart{
+    display:inline-block;
+    margin-left:5px;
+    color:#5d48c9;
+    font-family:"Caveat",cursive;
+    font-size:.9em;
+    transform:rotate(-8deg);
+    -webkit-text-fill-color:#6249d1;
+}
+
+.heart::after{
+    content:"";
+    position:absolute;
+    width:80px;
+    height:95px;
+    right:-55px;
+    top:-18px;
+    border-right:4px solid #6249d1;
+    border-radius:50%;
+    transform:rotate(25deg);
+    opacity:.85;
+}
+
+.modern .subtitle{
+    max-width:760px;
+    margin:0 auto 22px;
+    color:#395984;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:28px;
+    line-height:1.3;
+    font-weight:700;
+}
+
+.modern .intro{
+    max-width:800px;
+    margin:0 auto;
+    color:#536b95;
+    font-size:20px;
+    line-height:1.55;
+}
+
+.quote-box{
+    position:relative;
+    max-width:840px;
+    margin:38px auto 29px;
+    padding:27px 45px 24px;
+    border:2px solid #d9d5ff;
+    border-radius:22px;
+    background:linear-gradient(135deg,#faf9ff,#f3f0ff);
+    box-shadow:inset 0 0 20px rgba(159,143,225,.08);
+}
+
+.quote-icon{
+    position:absolute;
+    left:50%;
+    top:-24px;
+    transform:translateX(-50%);
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#e7e2ff;
+    color:#5543c8;
+    font-family:Georgia,serif;
+    font-size:34px;
+    font-weight:700;
+}
+
+.modern .quote{
+    color:#3d5680;
+    font-family:"Caveat",cursive;
+    font-size:24px;
+    line-height:1.45;
+}
+
+.lessons{
+    max-width:800px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:38px;
+    text-align:left;
+}
+
+.lesson{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:17px;
+    align-items:center;
+}
+
+.lesson-icon{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-size:29px;
+    background:#e3edff;
+    box-shadow:inset 0 0 0 1px rgba(111,146,220,.08);
+}
+
+.lesson:nth-child(2) .lesson-icon{background:#eee6ff;}
+.lesson:nth-child(3) .lesson-icon{background:#def5ec;}
+
+.lesson h3{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:17px;
+    color:#17365d;
+    margin-bottom:3px;
+}
+
+.lesson p{
+    color:#63779c;
+    font-size:14px;
+    line-height:1.3;
+}
+
+.bottom-line{
+    width:145px;
+    height:3px;
+    margin:34px auto 23px;
+    border-radius:10px;
+    background:linear-gradient(90deg,#d7c8ff,#b9a8e9);
+}
+
+.bottom-message{
+    color:#523cae;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:20px;
+    font-weight:700;
+}
+
+.home-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+    margin-top:21px;
+    padding:14px 33px;
+    border-radius:30px;
+    color:#fff;
+    text-decoration:none;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:17px;
+    font-weight:700;
+    background:linear-gradient(90deg,#5042d9,#8d43d8);
+    box-shadow:0 8px 17px rgba(94,70,213,.22);
+    transition:.2s ease;
+}
+
+.home-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 22px rgba(94,70,213,.28);
+}
+
+.home-icon{font-size:20px;}
+
+.tagline{
+    margin-top:23px;
+    color:#98a1c4;
+    font-family:"Space Grotesk",sans-serif;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:4px;
+}
+
+@media(max-width:1050px){
+    .thank-card{
+        width:min(1000px,90vw);
+        padding:45px 45px 35px;
+    }
+
+    .final-glass{
+        left:-35px;
+        transform:scale(.8) rotate(-1deg);
+        transform-origin:top left;
+    }
+
+    .final-protractor{
+        transform:scale(.75) rotate(-18deg);
+        transform-origin:bottom right;
+    }
+
+    .final-note.right{right:25px;}
+}
+
+@media(max-width:750px){
+    .modern{
+        padding:25px 0 45px;
+    }
+
+    .thank-card{
+        width:96vw;
+        min-height:auto;
+        padding:42px 22px 30px;
+        border-radius:25px;
+    }
+
+    .top-label{
+        letter-spacing:3px;
+        gap:10px;
+    }
+
+    .top-label::before,
+    .top-label::after{width:38px;}
+
+    .main-title{
+        font-size:clamp(3.3rem,16vw,5rem);
+        letter-spacing:-2.5px;
+    }
+
+    .modern .subtitle{font-size:21px;}
+    .modern .intro{font-size:16px;}
+
+    .quote-box{padding:28px 22px 20px;}
+    .modern .quote{font-size:20px;}
+
+    .lessons{
+        grid-template-columns:1fr;
+        gap:20px;
+        width:max-content;
+        max-width:100%;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .lesson{grid-template-columns:52px 1fr;}
+
+    .final-glass{
+        left:-85px;
+        top:240px;
+        transform:scale(.58) rotate(-1deg);
+        opacity:.35;
+    }
+
+    .final-protractor{
+        right:-95px;
+        bottom:50px;
+        transform:scale(.55) rotate(-18deg);
+        opacity:.3;
+    }
+
+    .final-note{display:none;}
+    .bottom-message{font-size:16px;}
+    .home-btn{font-size:15px;}
 }
 
 
-/* =========================================================
+    /* =========================================================
    FOOTER
 ========================================================= */
 
@@ -2540,6 +2937,8 @@ glass slab directly, we measured it inside a photograph.
 </div>
 
 
+
+
 <div class="principle">
 
 <h3>
@@ -2575,6 +2974,27 @@ Actual slab dimension =
 Slab dimension in pixels × Scale
 
 </code>
+
+</div>
+
+
+<div class="apparatus-photo">
+
+<h3>
+Photography Method — Apparatus 📸
+</h3>
+
+<figure class="apparatus-card">
+
+<img
+src="images/Photography%20apparatus.png"
+alt="Photography method apparatus">
+
+<figcaption>
+Photography Method — Apparatus
+</figcaption>
+
+</figure>
 
 </div>
 
@@ -2824,6 +3244,26 @@ rather than the glass slab.
 
 </div>
 
+
+<div class="apparatus-photo">
+
+<h3>
+Parallax Method — Apparatus 📸
+</h3>
+
+<figure class="apparatus-card">
+
+<img
+src="images/Parallax%20apparatus%20.png"
+alt="Parallax method apparatus">
+
+<figcaption>
+Parallax Method — Apparatus
+</figcaption>
+
+</figure>
+
+</div>
 
 <div class="principle">
 
@@ -3962,57 +4402,124 @@ Human positioning and measurement errors.
 
 <div class="container">
 
-<div class="phone">
-📏
-</div>
+    <!-- Decorative glass slab -->
+    <div class="final-glass" aria-hidden="true">
+        <div class="glass-front"></div>
+        <div class="glass-side"></div>
+        <div class="glass-top"></div>
+        <div class="final-ray one"></div>
+        <div class="final-ray two"></div>
+        <div class="final-arrow one">➤</div>
+        <div class="final-arrow two">➤</div>
+    </div>
 
-<h2>
-Tape Measure
-</h2>
+    <!-- Decorative protractor -->
+    <div class="final-protractor" aria-hidden="true">
+        <div class="tick t1"></div>
+        <div class="tick t2"></div>
+        <div class="tick t3"></div>
+        <div class="tick t4"></div>
+        <div class="tick t5"></div>
+        <div class="tick t6"></div>
+        <div class="tick t7"></div>
+        <div class="tick t8"></div>
+        <div class="tick t9"></div>
+        <div class="tick t10"></div>
+        <div class="tick t11"></div>
+        <span class="p-label p0">0</span>
+        <span class="p-label p10">10</span>
+        <span class="p-label p20">20</span>
+        <span class="p-label p30">30</span>
+        <span class="p-label p40">40</span>
+    </div>
 
-<div class="final-joke">
+    <!-- Handwritten notes -->
+    <div class="final-note left">
+        Same light.<br>
+        Different perspectives.
+        <span class="underline"></span>
+    </div>
 
-<p class="quote">
-And after all that physics...
-sometimes the simplest solution wins. 😭
-</p>
+    <div class="final-note right">
+        Physics<br>
+        is everywhere
+        <span class="underline"></span>
+    </div>
 
-</div>
+    <!-- Main thank-you card -->
+    <section class="thank-card">
 
-<div class="thank-you">
+        <div class="top-label">
+            JOURNEY COMPLETE
+        </div>
 
-<div class="thank-stars">
-✦ &nbsp; ✧ &nbsp; ✦
-</div>
+        <h1 class="main-title">
+            Thank You! <span class="heart">♡</span>
+        </h1>
 
-<h3>
-Thank You! 💙
-</h3>
+        <h2 class="subtitle">
+            And that brings our experimental journey to an end.
+        </h2>
 
-<p class="thank-main">
-And that brings our experimental journey to an end.
-</p>
+        <p class="intro">
+            We started with a simple glass slab and turned it into a full
+            exploration through shadows, optics, photography, parallax,
+            calculations — and even a free-fall attempt that had its own plot twist.
+        </p>
 
-<p>
-We started with one glass slab and somehow turned it into
-a journey through shadows, optics, photography, parallax,
-calculations — and even a free-fall attempt that had its
-own plot twist.
-</p>
+        <div class="quote-box">
+            <div class="quote-icon">”</div>
 
-<p class="thank-final">
-The real lesson? Physics isn't always about finding the
-easiest way to get an answer. Sometimes, it's about
-finding how many different ways you can get there.
-</p>
+            <p class="quote">
+                The real lesson? Physics isn't always about finding the easiest way to get an answer.
+                Sometimes, it's about discovering how many different ways you can get there.
+            </p>
+        </div>
 
-<div class="thank-line"></div>
+        <div class="lessons">
 
-<p class="thank-small">
-Thank you for giving us this amazing oppurtunity. ✨
-</p>
+            <div class="lesson">
+                <div class="lesson-icon">💡</div>
+                <div>
+                    <h3>Curiosity</h3>
+                    <p>Started the journey</p>
+                </div>
+            </div>
 
-</div>
+            <div class="lesson">
+                <div class="lesson-icon">⚙</div>
+                <div>
+                    <h3>Exploration</h3>
+                    <p>Found new perspectives</p>
+                </div>
+            </div>
+
+            <div class="lesson">
+                <div class="lesson-icon">☆</div>
+                <div>
+                    <h3>Learning</h3>
+                    <p>Goes beyond answers</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom-line"></div>
+
+        <p class="bottom-message">
+            Thank you for being a part of this journey! ✨
+        </p>
+
+        <a href="#journey" class="home-btn">
+            <span class="home-icon">⌂</span>
+            Back to Home
+        </a>
+
+        <p class="tagline">
+            SAME QUESTIONS. BRIGHTER PERSPECTIVE.
+        </p>
+
+    </section>
 
 </div>
 
