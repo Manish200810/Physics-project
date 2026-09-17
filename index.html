@@ -2137,317 +2137,67 @@ footer p:first-child{
 }
 
 
-/* =========================================================
-   CLEAN TECHNICAL FINAL SECTION
-========================================================= */
-
-.modern{
-    position:relative;
-    overflow:hidden;
-    min-height:900px;
-    padding:80px 0;
-    background:
-        radial-gradient(circle at 8% 20%, rgba(73,119,173,.12), transparent 20%),
-        radial-gradient(circle at 92% 75%, rgba(79,116,160,.10), transparent 22%),
-        linear-gradient(135deg,#f7f9fc 0%,#eef3f8 52%,#f8fafc 100%);
-    text-align:center;
+/* Apparatus images: exact GitHub filenames, URL-encoded for GitHub Pages */
+.apparatus-photo img {
+  display:block;
+  width:100%;
+  height:auto;
+  min-height:320px;
+  object-fit:contain;
+  object-position:center;
+  background:#fff;
 }
 
-.modern::before,
-.modern::after{
-    content:"";
-    position:absolute;
-    border-radius:50%;
-    pointer-events:none;
-    background:rgba(60,96,135,.06);
+/* FINAL TAPE MEASURE PRESENTATION MODE */
+#modern{
+    min-height:1100px;
+    padding:0;
 }
-
-.modern::before{
-    width:300px;
-    height:300px;
-    left:-170px;
-    top:120px;
+#modern > .container{
+    min-height:1100px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
 }
-
-.modern::after{
-    width:340px;
-    height:340px;
-    right:-190px;
-    bottom:-90px;
-}
-
-.modern .container{
-    position:relative;
-    z-index:3;
-}
-
-.final-grid{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-}
-
 .tape-app{
-    position:relative;
-    z-index:5;
-    text-align:center;
-    margin:0 auto 30px;
+    min-height:980px;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    padding:70px 20px 110px;
+    margin:0 auto;
 }
-
 .tape-icon{
-    width:118px;
-    height:118px;
-    margin:0 auto 14px;
-    border-radius:24px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:5.2rem;
-    background:#ffffff;
-    border:2px solid #cbd6e2;
-    box-shadow:7px 8px 0 #dce4ec;
+    width:250px;
+    height:250px;
+    border-radius:58px;
+    font-size:11rem;
+    margin:0 auto 28px;
+    box-shadow:14px 15px 0 #e9e2f4;
 }
-
-.tape-label{
-    margin-bottom:7px;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:.75rem;
-    font-weight:800;
-    letter-spacing:4px;
-    color:#718096;
-}
-
 .tape-app h2{
-    margin:0;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(2rem,4vw,3rem);
-    color:#18385e;
-}
-
-.tape-joke{
-    margin:9px auto 0;
-    max-width:650px;
-    font-size:1.05rem;
-    color:#5b6b7d;
-}
-
-.thank-card{
-    position:relative;
-    width:min(1015px,90vw);
-    min-height:700px;
-    margin:auto;
-    padding:52px 70px 32px;
-    text-align:center;
-    border:2px solid #d2dbe5;
-    border-radius:28px;
-    background:rgba(255,255,255,.94);
-    box-shadow:0 20px 50px rgba(30,55,80,.12), 7px 8px 0 rgba(207,217,228,.55);
-}
-
-.top-label{
-    display:inline-block;
-    margin-bottom:14px;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:.76rem;
-    font-weight:800;
-    letter-spacing:5px;
-    color:#64788d;
-}
-
-.main-title{
-    margin:0;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(3.2rem,6vw,5.3rem);
+    font-size:clamp(3.8rem,8vw,7rem);
     line-height:1;
-    color:#173a61;
-    letter-spacing:-2px;
-}
-
-.title-line{
-    width:78px;
-    height:4px;
-    margin:20px auto 22px;
-    border-radius:3px;
-    background:#2e6598;
-}
-
-.subtitle{
-    margin:0 auto 22px;
-    max-width:780px;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(1.25rem,2.5vw,1.7rem);
-    color:#345779;
-}
-
-.intro{
-    max-width:820px;
-    margin:0 auto;
-    font-size:1.08rem;
-    line-height:1.8;
-    color:#536679;
-}
-
-.quote-box{
-    position:relative;
-    max-width:800px;
-    margin:32px auto 28px;
-    padding:27px 34px 23px;
-    border:2px solid #d4dee8;
-    border-radius:18px;
-    background:#f4f7fa;
-}
-
-.quote-icon{
-    position:absolute;
-    left:50%;
-    top:-22px;
-    transform:translateX(-50%);
-    width:43px;
-    height:43px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#173a61;
-    color:#fff;
-    font-family:Georgia,serif;
-    font-size:1.65rem;
-}
-
-.quote{
     margin:0;
-    font-size:1.03rem;
-    line-height:1.7;
-    color:#455b70;
-    font-style:italic;
 }
-
-.lessons{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-    max-width:780px;
-    margin:0 auto;
-}
-
-.lesson{
-    display:flex;
-    align-items:center;
-    gap:13px;
-    text-align:left;
-    padding:15px 12px;
-    border-top:2px solid #d9e1e9;
-    border-bottom:2px solid #d9e1e9;
-}
-
-.lesson-icon{
-    flex:0 0 43px;
-    width:43px;
-    height:43px;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#eaf0f5;
-    border:1px solid #cbd7e2;
-    color:#244d72;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:.8rem;
-    font-weight:800;
-}
-
-.lesson h3{
-    margin:0 0 3px;
-    color:#1c4166;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:1rem;
-}
-
-.lesson p{
-    margin:0;
-    color:#718091;
-    font-size:.86rem;
-}
-
-.bottom-line{
-    width:90px;
-    height:3px;
-    margin:28px auto 18px;
-    border-radius:3px;
-    background:#c5d1dd;
-}
-
-.bottom-message{
-    margin:0 auto 22px;
-    color:#345a7c !important;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:1.1rem !important;
+.tape-joke{
+    max-width:900px;
+    margin:28px auto 0;
+    font-size:clamp(1.25rem,2.2vw,1.7rem);
+    line-height:1.55;
     font-weight:700;
 }
-
-.home-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:9px;
-    padding:13px 27px;
-    border-radius:10px;
-    background:#1d4f78;
-    color:white !important;
-    text-decoration:none;
-    font-family:"Space Grotesk",sans-serif;
-    font-weight:700;
-    box-shadow:0 5px 0 #123957;
-    transition:transform .2s ease, box-shadow .2s ease;
+.thank-card{
+    margin-top:80px;
 }
-
-.home-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 7px 0 #123957;
-}
-
-.home-icon{
-    font-size:1.15rem;
-}
-
-.tagline{
-    margin:22px 0 0 !important;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:.7rem !important;
-    font-weight:800;
-    letter-spacing:4px;
-    color:#8a99a8 !important;
-}
-
-/* Keep decorative experiment sketches subtle and technical */
-.final-glass{
-    opacity:.42;
-}
-
-.final-protractor{
-    opacity:.35;
-}
-
-@media(max-width:800px){
-    .thank-card{
-        padding:42px 25px 30px;
-    }
-
-    .lessons{
-        grid-template-columns:1fr;
-        max-width:480px;
-    }
-
-    .lesson{
-        justify-content:flex-start;
-    }
-
-    .final-glass{
-        left:-190px;
-    }
-
-    .final-protractor{
-        right:-180px;
-    }
+@media (max-width:700px){
+    #modern,#modern > .container{min-height:900px;}
+    .tape-app{min-height:820px;padding-top:55px;}
+    .tape-icon{width:190px;height:190px;border-radius:44px;font-size:8rem;}
+    .tape-app h2{font-size:3.5rem;}
 }
 
 </style>
@@ -3332,9 +3082,7 @@ Photography Method — Apparatus 📸
 
 <figure class="apparatus-card">
 
-<img
-src="images/Photography%20Method%20%E2%80%94%20Apparatus.png"
-alt="Photography method apparatus" loading="eager" decoding="async">
+<img src="./images/photography-apparatus.png" alt="Photography method apparatus" loading="eager" decoding="async">
 
 <figcaption>
 Photography Method — Apparatus
@@ -3599,9 +3347,7 @@ Parallax Method — Apparatus 📸
 
 <figure class="apparatus-card">
 
-<img
-src="images/Parallax%20Method%20%E2%80%94%20Apparatus.png"
-alt="Parallax method apparatus" loading="eager" decoding="async">
+<img src="./images/parallax-apparatus.png" alt="Parallax method apparatus" loading="eager" decoding="async">
 
 <figcaption>
 Parallax Method — Apparatus
@@ -4741,61 +4487,74 @@ Human positioning and measurement errors.
 
 
 <!-- =========================================================
-     FINAL TAPE MEASURE + THANK YOU
+     FINAL TAPE MEASURE APP
 ========================================================= -->
 
 <section id="modern" class="modern">
 
 <div class="container">
 
-    <div class="final-grid" aria-hidden="true">
-        <div class="final-glass">
-            <div class="glass-front"></div>
-            <div class="glass-side"></div>
-            <div class="glass-top"></div>
-            <div class="final-ray one"></div>
-            <div class="final-ray two"></div>
-            <div class="final-arrow one">➤</div>
-            <div class="final-arrow two">➤</div>
-        </div>
+    <!-- Decorative glass slab -->
+    <div class="final-glass" aria-hidden="true">
+        <div class="glass-front"></div>
+        <div class="glass-side"></div>
+        <div class="glass-top"></div>
+        <div class="final-ray one"></div>
+        <div class="final-ray two"></div>
+        <div class="final-arrow one">➤</div>
+        <div class="final-arrow two">➤</div>
+    </div>
 
-        <div class="final-protractor">
-            <div class="tick t1"></div><div class="tick t2"></div>
-            <div class="tick t3"></div><div class="tick t4"></div>
-            <div class="tick t5"></div><div class="tick t6"></div>
-            <div class="tick t7"></div><div class="tick t8"></div>
-            <div class="tick t9"></div><div class="tick t10"></div>
-            <div class="tick t11"></div>
-            <span class="p-label p0">0</span>
-            <span class="p-label p10">10</span>
-            <span class="p-label p20">20</span>
-            <span class="p-label p30">30</span>
-            <span class="p-label p40">40</span>
-        </div>
+    <!-- Decorative protractor -->
+    <div class="final-protractor" aria-hidden="true">
+        <div class="tick t1"></div>
+        <div class="tick t2"></div>
+        <div class="tick t3"></div>
+        <div class="tick t4"></div>
+        <div class="tick t5"></div>
+        <div class="tick t6"></div>
+        <div class="tick t7"></div>
+        <div class="tick t8"></div>
+        <div class="tick t9"></div>
+        <div class="tick t10"></div>
+        <div class="tick t11"></div>
+        <span class="p-label p0">0</span>
+        <span class="p-label p10">10</span>
+        <span class="p-label p20">20</span>
+        <span class="p-label p30">30</span>
+        <span class="p-label p40">40</span>
+    </div>
+
+    <!-- Handwritten notes -->
+    <div class="final-note left">
+        Same light.<br>
+        Different perspectives.
+        <span class="underline"></span>
+    </div>
+
+    <div class="final-note right">
+        Physics<br>
+        is everywhere
+        <span class="underline"></span>
     </div>
 
     <!-- Tape Measure app -->
     <div class="tape-app">
         <div class="tape-icon" aria-label="Tape Measure app icon">📏</div>
-        <div class="tape-label">MEASUREMENT COMPLETE</div>
         <h2>Tape Measure</h2>
-        <p class="tape-joke">
-            After all those methods... sometimes the simplest tool wins.
-        </p>
+        <p class="tape-joke">And after all that physics... sometimes the simplest solution wins. 😭</p>
     </div>
 
-    <!-- Final thank-you -->
+    <!-- Main thank-you card -->
     <section class="thank-card">
 
         <div class="top-label">
-            EXPERIMENT COMPLETE
+            JOURNEY COMPLETE
         </div>
 
         <h1 class="main-title">
-            Thank You
+            Thank You! <span class="heart">♡</span>
         </h1>
-
-        <div class="title-line"></div>
 
         <h2 class="subtitle">
             And that brings our experimental journey to an end.
@@ -4808,7 +4567,8 @@ Human positioning and measurement errors.
         </p>
 
         <div class="quote-box">
-            <div class="quote-icon">"</div>
+            <div class="quote-icon">”</div>
+
             <p class="quote">
                 The real lesson? Physics isn't always about finding the easiest way to get an answer.
                 Sometimes, it's about discovering how many different ways you can get there.
@@ -4818,7 +4578,7 @@ Human positioning and measurement errors.
         <div class="lessons">
 
             <div class="lesson">
-                <div class="lesson-icon">01</div>
+                <div class="lesson-icon">💡</div>
                 <div>
                     <h3>Curiosity</h3>
                     <p>Started the journey</p>
@@ -4826,7 +4586,7 @@ Human positioning and measurement errors.
             </div>
 
             <div class="lesson">
-                <div class="lesson-icon">02</div>
+                <div class="lesson-icon">⚙</div>
                 <div>
                     <h3>Exploration</h3>
                     <p>Found new perspectives</p>
@@ -4834,7 +4594,7 @@ Human positioning and measurement errors.
             </div>
 
             <div class="lesson">
-                <div class="lesson-icon">03</div>
+                <div class="lesson-icon">☆</div>
                 <div>
                     <h3>Learning</h3>
                     <p>Goes beyond answers</p>
@@ -4846,7 +4606,7 @@ Human positioning and measurement errors.
         <div class="bottom-line"></div>
 
         <p class="bottom-message">
-            Thank you for giving us this amazing oppurtunity.
+            Thank you for giving us this amazing oppurtunity. ✨
         </p>
 
         <a href="#journey" class="home-btn">
@@ -4855,7 +4615,7 @@ Human positioning and measurement errors.
         </a>
 
         <p class="tagline">
-            MEASURE • OBSERVE • ANALYSE • LEARN
+            SAME QUESTIONS. BRIGHTER PERSPECTIVE.
         </p>
 
     </section>
